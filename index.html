@@ -3,22 +3,40 @@
 <head>
 <meta charset="utf-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="./prism.css">
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="./prism.js"></script>
+<script>
+    $(function(){
+      $('a[href^="#"]').click(function() {
+        var speed = 10000;
+        var href= $(this).attr("href");
+        var target = $(href == "#" || href == "" ? 'html' : href);
+        var position = target.offset().top;
+        $('body,html').animate({scrollTop:position}, speed, 'swing');
+        return false;
+      });
+    });
+  </script>
 <title>えるるちゃんのgithub</title>
 </head>
 <body>
   <div class="p-3">
     <div class="container-fluid">
       <ul class="nav nav-tabs">
-        <li class="nav-item">
-          <a class="nav-link" href="#profile" data-toggle="tab">Profile</a>
+        <li class="nav-item bg-light">
+          <a class="nav-link active text-dark" href="#top" data-toggle="tab" aria-selected="true">Top</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#works" data-toggle="tab">Works</a>
+        <li class="nav-item bg-light">
+          <a class="nav-link text-dark" href="#profile" data-toggle="tab" aria-selected="false">Profile</a>
         </li>
-  <!--
+        <li class="nav-item bg-light">
+          <a class="nav-link text-dark" href="#works" data-toggle="tab" aria-selected="false">Works</a>
+        </li>
+      </ul>
+<!--
           <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Works</a>
           <div class="dropdown-menu">
@@ -29,18 +47,71 @@
 -->
       </ul>
       <div class="tab-content">
-        <div id="profile" class="tab-pane fade show active">
-          <div class="card">
+        <div id="top" class="tab-pane fade show active">
+          <div class="card m-3">
             <div class="card-body">
-              <h4 class="card-title">ぷろふぃーる</h4>
+              <h4 class="card-title">Top</h4><hr>
+                <p>こちらはえるるの書いたコードをざっと上げていくページになります。</p>
+                このページ自体はほぼBootstrapとPrismによって動いております。
+            </div>
+          </div>
+        </div>
+        <div id="profile" class="tab-pane fade">
+          <div class="card m-3">
+            <div class="card-body">
+              <h4 class="card-title">Profile</h4><hr>
+                <div class="d-flex flex-row">
+                  <div class="d-flex flex-column">
+                      <div class="p-2">Author</div>
+                      <div class="p-2">Twitter</div>
+                      <div class="p-2">mail</div>
+                      <div class="p-2">Cord</div>
+                  </div>
+                  <div class="d-flex flex-column">
+                      <div class="p-2">えるる (Lru)</div>
+                      <div class="p-2"><a href="https://twitter.com/kilattoeruru">@kilattoeruru</a></div>
+                      <div class="p-2">kilattoeruru@outlook.jp</div>
+                      <div class="p-2">C++, Python, Bash</div>
+                  </div>
+                </div>
             </div>
           </div>
         </div>
         <!-- End Profile -->
         <div id="works" class="tab-pane fade">
-          <div class="card">
+          <div class="card m-3">
             <div class="card-body">
-              <h4 class="card-title">わーくす</h4>
+              <h4 class="card-title">Works</h4>
+              <div class="container">
+                <div class="row">
+                  <div class="col-12 col-md-3">
+                    <nav id="nav-works" class="navbar navbar-light bg-light">
+                      <nav class="nav nav-pills flex-column">
+                        <a class="nav-link" href="#NLP100">NLP100本knock</a>
+                        <nav class="nav nav-pills flex-column">
+                          <a class="nav-link ml-3 my-1" href="#p0">p0</a>
+                          <a class="nav-link ml-3 my-1" href="#p1">p1</a>
+                        </nav>
+                        <a class="nav-link" href="#Atcoder">Atcoder</a>
+                        <nav class="nav nav-pills flex-column">
+                          <a class="nav-link ml-3 my-1" href="#ABC1A">ABC1A</a>
+                          <a class="nav-link ml-3 my-1" href="#ABC1B">ABC1B</a>
+                        </nav>
+                      </nav>
+                    </nav>
+                  </div>
+                  <div class="col-12 col-md-9">
+                    <div data-spy="scroll" data-target="#nav-works" data-offset="0">
+                      <h3>NLP100本knock</h3><hr>
+                      <h4 id="p0">p00</h4>
+                      <pre data-src="../NLP100knock/Chapter1/p00.py"></pre>
+                      <h4 id="p1">p01</h4>
+                      <h4 id="ABC1A">ABC1A</h4>
+                      <h4 id="ABC1B">ABC1B</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
