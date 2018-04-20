@@ -1,221 +1,58 @@
 <!DOCTYPE HTML>
-<html lang=ja>
+<html lang="ja">
 <head>
   <!-- meta -->
-  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <!-- link -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="./prism.css">
+  <link rel="stylesheet" href="./src/css/prism.css"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
   <!-- script -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="./src/js/jquery-3.3.1.min.js"></script>
+  <script src="./src/js/connect.js"></script>
+  <script src="./src/js/nlp_connect.js"></script>
+  <script src="./src/js/prism.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  <script src="./prism.js"></script>
-
-  <title>えるるのGitHub</title>
+  <title>Lru Room</title>
 </head>
 
 <body>
   <div class="p-3">
     <div class="container-fluid">
       <!-- navi -->
-      <ul class="nav nav-tabs">
-        <li class="nav-item bg-light">
-          <a class="nav-link active text-dark" href="#top" data-toggle="tab" aria-selected="true">Top</a>
-        </li>
-        <li class="nav-item bg-light">
-          <a class="nav-link text-dark" href="#profile" data-toggle="tab" aria-selected="false">Profile</a>
-        </li>
-        <li class="nav-item dropdown bg-light">
-          <a class="nav-link dropdown-toggle text-dark" href="#" data-toggle="dropdown" aria-selected="false">NLP100knock</a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="#chapter1" data-toggle="tab">Chapter1</a>
-            <a class="dropdown-item" href="#chapter2" data-toggle="tab">Chapter2</a>
-            <a class="dropdown-item" href="#chapter3" data-toggle="tab">Chapter3</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown bg-light">
-          <a class="nav-link dropdown-toggle text-dark" href="#" data-toggle="dropdown" aria-selected="false">Atcoder</a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="#abc1" data-toggle="tab">Biginner1</a>
-            <a class="dropdown-item" href="#abc2" data-toggle="tab">Biginner2</a>
-          </div>
-        </li>
-      </ul>
+      <div id="navigater">
+      </div>
       <!-- End navi -->
 
       <!-- Contents -->
       <div class="tab-content">
         <!-- Top -->
         <div id="top" class="tab-pane fade show active">
-          <div class="card m-3">
-            <div class="card-body">
-              <h4 class="card-title">Top</h4><hr>
-                <p>こちらはえるるの書いたコードをざっと上げていくページになります。</p>
-                このページ自体はほぼBootstrapとPrismによって動いております。<br>
-                commitしたら自動でコードのリンクを増やしてくれる機能が欲しい
-            </div>
-          </div>
         </div>
         <!-- End Top -->
         
         <!-- Profile -->
         <div id="profile" class="tab-pane fade">
-          <div class="card m-3">
-            <div class="card-body">
-              <h4 class="card-title">Profile</h4><hr>
-              <div class="d-flex flex-row">
-                <div class="d-flex flex-column">
-                    <div class="p-2">Author</div>
-                    <div class="p-2">Twitter</div>
-                    <div class="p-2">mail</div>
-                    <div class="p-2">Cord</div>
-                </div>
-                <div class="d-flex flex-column">
-                    <div class="p-2">えるる (Lru)</div>
-                    <div class="p-2"><a href="https://twitter.com/kilattoeruru">@kilattoeruru</a></div>
-                    <div class="p-2">kilattoeruru@outlook.jp</div>
-                    <div class="p-2">C++, Python, Bash</div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
         <!-- End Profile -->
 
-        <!-- NLP100:Chapter1 -->
-        <div id="chapter1" class="tab-pane fade">
+        <!-- nlp -->
+        <div id="nlp" class="tab-pane fade">
+        </div>
+        <!-- End nlp -->
+
+        <!-- Atcoder -->
+        <div id="atcoder" class="tab-pane fade">
           <div class="card m-3">
             <div class="card-body">
-              <h4 class="card-title">Works / NLP100本knock / Chapter1 </h4><hr>
-                <h5>p00</h5>
-                <pre class="line-numbers" data-src="https://raw.githubusercontent.com/KL-Lru/NLP100knock/master/Chapter1/p00.py"></pre><hr>
-                <h5>p01</h5>
-                <pre class="line-numbers" data-src="https://raw.githubusercontent.com/KL-Lru/NLP100knock/master/Chapter1/p01.py"></pre><hr>
-                <h5>p02</h5>
-                <pre class="line-numbers" data-src="https://raw.githubusercontent.com/KL-Lru/NLP100knock/master/Chapter1/p02.py"></pre><hr>
-                <h5>p03</h5>
-                <pre class="line-numbers" data-src="https://raw.githubusercontent.com/KL-Lru/NLP100knock/master/Chapter1/p03.py"></pre><hr>
-                <h5>p04</h5>
-                <pre class="line-numbers" data-src="https://raw.githubusercontent.com/KL-Lru/NLP100knock/master/Chapter1/p04.py"></pre><hr>
-                <h5>p05</h5>
-                <pre class="line-numbers" data-src="https://raw.githubusercontent.com/KL-Lru/NLP100knock/master/Chapter1/p05.py"></pre><hr>
-                <h5>p06</h5>
-                <pre class="line-numbers" data-src="https://raw.githubusercontent.com/KL-Lru/NLP100knock/master/Chapter1/p06.py"></pre><hr>
-                <h5>p07</h5>
-                <pre class="line-numbers" data-src="https://raw.githubusercontent.com/KL-Lru/NLP100knock/master/Chapter1/p07.py"></pre><hr>
-                <h5>p08</h5>
-                <pre class="line-numbers" data-src="https://raw.githubusercontent.com/KL-Lru/NLP100knock/master/Chapter1/p08.py"></pre><hr>
-                <h5>p09</h5>
-                <pre class="line-numbers" data-src="https://raw.githubusercontent.com/KL-Lru/NLP100knock/master/Chapter1/p09.py"></pre><hr>
+              <h4 class="card-title"> 工事中… </h4><hr />
             </div>
           </div>
         </div>
-        <!-- End Chapter1 -->
-
-        <!-- NLP100:Chapter2 -->
-        <div id="chapter2" class="tab-pane fade">
-          <div class="card m-3">
-            <div class="card-body">
-              <h4 class="card-title">Works / NLP100本knock / Chapter2 </h4><hr>
-              <h5>p10</h5>
-              <pre class="line-numbers" data-src="https://raw.githubusercontent.com/KL-Lru/NLP100knock/master/Chapter2/p10.py"></pre><hr>
-              <h5>p11</h5>
-              <pre class="line-numbers" data-src="https://raw.githubusercontent.com/KL-Lru/NLP100knock/master/Chapter2/p11.py"></pre><hr>
-              <h5>p12</h5>
-              <pre class="line-numbers" data-src="https://raw.githubusercontent.com/KL-Lru/NLP100knock/master/Chapter2/p12.py"></pre><hr>
-              <h5>p13</h5>
-              <pre class="line-numbers" data-src="https://raw.githubusercontent.com/KL-Lru/NLP100knock/master/Chapter2/p13.py"></pre><hr>
-              <h5>p14</h5>
-              <pre class="line-numbers" data-src="https://raw.githubusercontent.com/KL-Lru/NLP100knock/master/Chapter2/p14.py"></pre><hr>
-              <h5>p15</h5>
-              <pre class="line-numbers" data-src="https://raw.githubusercontent.com/KL-Lru/NLP100knock/master/Chapter2/p15.py"></pre><hr>
-              <h5>p16</h5>
-              <pre class="line-numbers" data-src="https://raw.githubusercontent.com/KL-Lru/NLP100knock/master/Chapter2/p16.py"></pre><hr>
-              <h5>p17</h5>
-              <pre class="line-numbers" data-src="https://raw.githubusercontent.com/KL-Lru/NLP100knock/master/Chapter2/p17.py"></pre><hr>
-              <h5>p18</h5>
-              <pre class="line-numbers" data-src="https://raw.githubusercontent.com/KL-Lru/NLP100knock/master/Chapter2/p18.py"></pre><hr>
-              <h5>p19</h5>
-              <pre class="line-numbers" data-src="https://raw.githubusercontent.com/KL-Lru/NLP100knock/master/Chapter2/p19.py"></pre><hr>
-          </div>
-          </div>
-        </div>
-        <!-- End Chapter2 -->
-
-        <!-- NLP100:Chapter3 -->
-        <div id="chapter3" class="tab-pane fade">
-          <div class="card m-3">
-            <div class="card-body">
-              <h4 class="card-title">Works / NLP100本knock / Chapter3 </h4><hr>
-              <h5>p20</h5>
-              <pre class="line-numbers" data-src="https://raw.githubusercontent.com/KL-Lru/NLP100knock/master/Chapter3/p20.py"></pre><hr>
-              <h5>p21</h5>
-              <pre class="line-numbers" data-src="https://raw.githubusercontent.com/KL-Lru/NLP100knock/master/Chapter3/p21.py"></pre><hr>
-              <h5>p22</h5>
-              <pre class="line-numbers" data-src="https://raw.githubusercontent.com/KL-Lru/NLP100knock/master/Chapter3/p22.py"></pre><hr>
-              <h5>p23</h5>
-              <pre class="line-numbers" data-src="https://raw.githubusercontent.com/KL-Lru/NLP100knock/master/Chapter3/p23.py"></pre><hr>
-              <h5>p24</h5>
-              <pre class="line-numbers" data-src="https://raw.githubusercontent.com/KL-Lru/NLP100knock/master/Chapter3/p24.py"></pre><hr>
-              <h5>p25</h5>
-              <pre class="line-numbers" data-src="https://raw.githubusercontent.com/KL-Lru/NLP100knock/master/Chapter3/p25.py"></pre><hr>
-<!--
-              <h5>p26</h5>
-              <pre class="line-numbers" data-src="https://raw.githubusercontent.com/KL-Lru/NLP100knock/master/Chapter3/p26.py"></pre><hr>
-              <h5>p27</h5>
-              <pre class="line-numbers" data-src="https://raw.githubusercontent.com/KL-Lru/NLP100knock/master/Chapter3/p27.py"></pre><hr>
-              <h5>p28</h5>
-              <pre class="line-numbers" data-src="https://raw.githubusercontent.com/KL-Lru/NLP100knock/master/Chapter3/p28.py"></pre><hr>
-              <h5>p29</h5>
-              <pre class="line-numbers" data-src="https://raw.githubusercontent.com/KL-Lru/NLP100knock/master/Chapter3/p29.py"></pre><hr>
--->
-            </div>
-          </div>
-        </div>
-        <!-- End Chapter3 -->
-
-        <!-- Atcoder:ABC1 -->
-        <div id="abc1" class="tab-pane fade">
-          <div class="card m-3">
-            <div class="card-body">
-              <h4 class="card-title">Works / Atcoder / Biginner1 </h4><hr>
-              <p>問題文は<a href="https://beta.atcoder.jp/contests/abc001/">Atcoder</a>を参照してください</p>
-              <h5>A</h5>
-              <pre class="line-numbers" data-src="https://raw.githubusercontent.com/KL-Lru/Atcoder/master/ABC1/A.cpp"></pre><hr>
-              <h5>B</h5>
-              <pre class="line-numbers" data-src="https://raw.githubusercontent.com/KL-Lru/Atcoder/master/ABC1/B.cpp"></pre><hr>
-              <h5>C</h5>
-              <pre class="line-numbers" data-src="https://raw.githubusercontent.com/KL-Lru/Atcoder/master/ABC1/C.cpp"></pre><hr>
-              <h5>D</h5>
-              <pre class="line-numbers" data-src="https://raw.githubusercontent.com/KL-Lru/Atcoder/master/ABC1/D.cpp"></pre><hr>
-            </div>
-          </div>
-        </div>
-        <!-- End ABC1 -->
-
-        <!-- Atcoder:ABC1 -->
-        <div id="abc2" class="tab-pane fade">
-          <div class="card m-3">
-            <div class="card-body">
-              <h4 class="card-title">Works / Atcoder / Biginner2 </h4><hr>
-              <p>問題文は<a href="https://beta.atcoder.jp/contests/abc002/">Atcoder</a>を参照してください</p>
-              <h5>A</h5>
-              <pre class="line-numbers" data-src="https://raw.githubusercontent.com/KL-Lru/Atcoder/master/ABC2/A.cpp"></pre><hr>
-              <h5>B</h5>
-              <pre class="line-numbers" data-src="https://raw.githubusercontent.com/KL-Lru/Atcoder/master/ABC2/B.cpp"></pre><hr>
-              <h5>C</h5>
-              <pre class="line-numbers" data-src="https://raw.githubusercontent.com/KL-Lru/Atcoder/master/ABC2/C.cpp"></pre><hr>
-              <h5>D</h5>
-<!--                <pre class="line-numbers" data-src="https://raw.githubusercontent.com/KL-Lru/Atcoder/master/ABC2/D.cpp"></pre><hr> -->
-            </div>
-          </div>
-        </div>
-        <!-- End ABC2 -->
-
+        <!-- End Atcoder -->
       </div>
       <!-- End Contents -->
-
     </div>
-  </body>
+  </div>
+</body>
 </html>
