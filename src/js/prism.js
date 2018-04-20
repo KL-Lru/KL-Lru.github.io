@@ -1638,4 +1638,3 @@ Prism.plugins.toolbar.registerButton('show-language', function(env) {
 });
 
 })();
-
