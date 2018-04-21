@@ -1638,9 +1638,3 @@ Prism.plugins.toolbar.registerButton('show-language', function(env) {
 });
 
 })();
-
-require(['jquery', 'prism'], function($, prism) {
-    $(function() {
-        prism.highlightAll();
-    });
-});
