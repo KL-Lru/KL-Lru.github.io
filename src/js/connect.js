@@ -1,3 +1,12 @@
+$(function(){
+  if(document.readyState !== "loading") {
+    setTimeout(_.highlightAll, 0);
+  }
+  else {
+    document.addEventListener('DOMContentLoaded', _.highlightAll);
+  }
+});
+
 $(document).ready(function(){
   $("#navigater").load("/src/html/navi.html");
   $("#top").load("/src/html/top.html");
