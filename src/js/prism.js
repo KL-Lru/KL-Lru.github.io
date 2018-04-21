@@ -522,7 +522,7 @@ if (script) {
 			}
 		}
 		else {
-			document.addEventListener('DOMContentLoaded', _.highlightAll);
+			document.addEventListener('load', _.highlightAll);
 		}
 	}
 }
@@ -1390,7 +1390,7 @@ Prism.hooks.add('complete', function completeHook(env) {
 
 	};
 
-	document.addEventListener('DOMContentLoaded', self.Prism.fileHighlight);
+	document.addEventListener('load', self.Prism.fileHighlight);
 
 })();
 
