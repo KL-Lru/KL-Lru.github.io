@@ -5,7 +5,7 @@ $(document).ready(function(){
   $("#blog").load("/src/html/blog.html");
   $("#nlp").load("/src/html/nlp.html",function(){
     $("#nlp_top").load("/src/html/nlp/top.html");
-    $("#chapter1").load("/src/html/nlp/chapter1.html");
-    $("#chapter2").load("/src/html/nlp/chapter2.html");
+    $("#chapter1").load("/src/html/nlp/chapter1.html",Prism.highlightAll());
+    $("#chapter2").load("/src/html/nlp/chapter2.html",Prism.highlightAll());
   });
 });
