@@ -522,7 +522,7 @@ if (script) {
 			}
 		}
 		else {
-			document.addEventListener('load', _.highlightAll);
+			document.addEventListener('DOMContentLoaded', _.highlightAll);
 		}
 	}
 }
@@ -1390,7 +1390,7 @@ Prism.hooks.add('complete', function completeHook(env) {
 
 	};
 
-	document.addEventListener('load', self.Prism.fileHighlight);
+	document.addEventListener('DOMContentLoaded', self.Prism.fileHighlight);
 
 })();
 
@@ -1639,3 +1639,8 @@ Prism.plugins.toolbar.registerButton('show-language', function(env) {
 
 })();
 
+require(['jquery', 'prism'], function($, prism) {
+    $(function() {
+        prism.highlightAll();
+    });
+});
