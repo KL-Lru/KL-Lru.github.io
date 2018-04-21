@@ -1,12 +1,3 @@
-$(function(){
-  if(document.readyState !== "loading") {
-    setTimeout(_.highlightAll, 0);
-  }
-  else {
-    document.addEventListener('DOMContentLoaded', _.highlightAll);
-  }
-});
-
 $(document).ready(function(){
   $("#navigater").load("/src/html/navi.html");
   $("#top").load("/src/html/top.html");
@@ -17,4 +8,5 @@ $(document).ready(function(){
     $("#chapter2").load("/src/html/nlp/chapter2.html");
   });
   $("#blog").load("/src/html/blog.html");
+  Prism.highlightElement(document.getElementsByClassName('test_code'));
 });
