@@ -1,4 +1,4 @@
-$(document).addEventListener("DOMContentLoaded",function(){
+document.addEventListener("DOMContentLoaded",function(){
   $("#navigater").load("/src/html/navi.html");
   $("#top").load("/src/html/top.html");
   $("#profile").load("/src/html/profile.html");
