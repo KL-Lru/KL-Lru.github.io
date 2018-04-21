@@ -8,4 +8,5 @@ $(document).ready(function(){
     $("#chapter1").load("/src/html/nlp/chapter1.html",Prism.highlightAll());
     $("#chapter2").load("/src/html/nlp/chapter2.html",Prism.highlightAll());
   });
+  $("#atcoder").load("/src/html/atcoder.html");
 });
