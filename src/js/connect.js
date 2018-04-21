@@ -8,5 +8,5 @@ $(document).ready(function(){
     $("#chapter2").load("/src/html/nlp/chapter2.html");
   });
   $("#blog").load("/src/html/blog.html");
-  Prism.highlightElement(document.getElementsByClassName('test_code'));
+  Prism.highlightElement(document.getElementsById('test_code'));
 });
