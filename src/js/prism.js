@@ -1324,7 +1324,6 @@ Prism.hooks.add('complete', function completeHook(env) {
 	}
 
 	self.Prism.fileHighlight = function() {
-		console.log("ぺーじよみこみに成功したよ!");
 		var Extensions = {
 			'js': 'javascript',
 			'py': 'python',
