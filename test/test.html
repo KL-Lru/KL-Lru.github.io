@@ -9,13 +9,6 @@
   <script src="/src/js/jquery-3.3.1.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" defer></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" defer></script>
-  <script>
-    function show_all(){
-      $("recipe1").addClass("show");
-      $("recipe2").addClass("show");
-      $("recipe3").addClass("show");
-    }
-  </script>
   <title>Lru Room</title>
 </head>
 
@@ -26,16 +19,19 @@
       <div id="navigater">
         <ul class="nav nav-tabs">
           <li class="nav-item bg-light">
-            <a class="nav-link active" href="#recipe1" data-toggle="tab" aria-selected="true">レシピ１</a>
+            <a class="nav-link active" href="#recipe1" data-toggle="tab" aria-selected="true" onclick="alert('デフォルトの色の例、本文比率は5:7です')">レシピ１</a>
           </li>
           <li class="nav-item bg-light">
-            <a class="nav-link bg-info text-white" href="#recipe2" data-toggle="tab" aria-selected="false">レシピ２</a>
+            <a class="nav-link bg-info text-white" href="#recipe2" data-toggle="tab" aria-selected="false" onclick="alert('Bootstrap定義の色の例、本文比率は7:5です')">レシピ２</a>
           </li>
           <li class="nav-item bg-light">
-            <a class="nav-link" style="background-color:powderblue; color:navy" href="#recipe3" data-toggle="tab" aria-selected="false">レシピ３</a>
+            <a class="nav-link" style="background-color:powderblue; color:navy" href="#recipe3" data-toggle="tab" aria-selected="false" onclick="alert('自分定義の色の例、本文比率は6:6です')">レシピ３</a>
           </li>
           <li class="nav-item bg-light">
-              <a class="nav-link" href="#" data-toggle="tab" aria-selected="false" onclick="show_all()">ぜんぶ</a>
+              <a class="nav-link" href="#" data-toggle="tab" aria-selected="false" onclick="
+              $('recipe1').addClass('show');
+              $('recipe2').addClass('show');
+              $('recipe3').addClass('show');">ぜんぶ</a>
             </li>
           </ul>
       </div>
@@ -47,9 +43,6 @@
           <div class="card m-3">
             <div class="card-body">
               <h4 class="card-title">1つめのレシピはサラダうどん</h4><hr />
-              <script>
-                alert("デフォルト色の例、本文比率は5:7です")
-              </script>
               <div class="row">
                 <div class="col-5">
                   <table class="table">
@@ -91,7 +84,6 @@
             <div class="card-body">
               <h4 class="card-title">2つめのレシピはベーグル</h4><hr />
               <script>
-                alert("Bootstrap定義の色(info)の例、本文比率は7:5です")
               </script>
               <div class="row">
                 <div class="col-7">
