@@ -17,78 +17,80 @@
   <title>Lru Room</title>
 </head>
 
-<div class="card m-3">
-  <div class="card-body">
-    <h4 class="card-title">Blog</h4><hr />
-    <div class="row">
-      <div class="col-3">
-        <ul class="nav nav-tabs flex-column">
-          <li class="nav-item  bg-light">
-            <a class="nav-link active text-dark" href="#achive1" data-toggle="tab" aria-selected="true">いっこめ</a>
-          </li>
-        </ul>
-      </div>
-      <div class="col-9">
-        <div class="tab-content">
-          <div id="achive1" class="tab-pane fade show active">
-            <div class="card">
-              <div class="card-body">
-                <h4>なんとかページはできました</h4><hr />
-                <p>
-                  はい、えるると申します。
-                </p>
-                <p>
-                  なんとかウェブページを作成しました。
-                  ちょっと全部自作にしてみようかなーと思ってみたりもしていろいろやってみていたのですが、HTML初心者なのでめちゃくちゃ苦労しまして、
-                  結局Bootstrapに頼ることにしました。
-                  なかなかいいものですけど素材が作れない人なので殺風景ですねw
-                </p>
-                <p>
-                  なにかしらいいものをUpしていく、というよりなにかしらを解説する、みたいな感じになるかと思います。
-                  競プロだったり…100本ノックだったり…その他だったり…。
-                </p>
-                <p>
-                  せっかくなのでこのウェブページの構成についてちょっと書いておきます。
-                </p>
-                <p>
-                  このページは<code class="language-markup">index.html</code>なわけですが、
-                  <code class="language-markup">connect.js</code>に記載しているようにディレクトリ内のHTMLファイルを、
-                  <code class="language-markup">index.html</code>内部に読み込んで表示しております。
-                  使用したのはJQueryのloadでそれぞれのidの位置にファイル内容を読み込んでいます。
-                </p>
-                <p>
-                  ここで曲者だったのが<code class="language-markup">Prism.js</code>。
-                  どうやらBootstrapなんかはloadした中身に対しても自動的に対応してくれているみたいなのだが、
-                  <code class="language-markup">Prism.js</code>は勝手にやってくれないのでコードが表示されない…。
-                  中身を見てみると、DOMContentLoaded時にハイライトを行うようにセットされているが、
-                  JQueryのloadで読み込まれるのはその後…というわけでloadした後に手動でセッティングしないといけない。
-                </p>
-                <p>
-                  ということで<code class="language-markup">connect.js</code>の中でのこのページを読み込む記述はこんな感じ。
-                  <pre class="line-numbers language-js"><code>$("#blog").load("/src/html/blog.html",function(){
-                      self.Prism.highlightAll();
-                    });
-                  </code></pre>
-                </p>
-                <p>
-                  ファイルを取り込むようにしている場合は<code class="language-js">self.Prism.fileHighlight()</code>、
-                  コードを直接書く場合には<code class="language-js">self.Prism.highlightAll()</code>を使うと、
-                  うまいこと適用してくれます。
-                </p>
-                <p>
-                  注意点としては、このJSを実行する前にPrism.jsを読み込んでいないといけないので、scriptタグを書くのに注意するぐらいでしょうか。
-                  deferを全部につけておくと順番通りに読んでくれるみたいです。
-                  詳しく説明する知識はないです。
-                </p>
-                <p>
-                  ちょっと思ってる問題点としては、<code class="language-markup">index.html</code>しかない上に#とかで指定しても動かないところです。
-                  (そもそもページを全部分けてやればすべての問題解決だったのでは?という話ではある)
-                </p>
-                <p>
-                  そんなこんなでいろいろ更新していけたらいいなーと思います。
-                  ではでは〜
-                </p><hr />
-                2018/04/23 01:26
+<body>
+  <div class="card m-3">
+    <div class="card-body">
+      <h4 class="card-title">Blog</h4><hr />
+      <div class="row">
+        <div class="col-3">
+          <ul class="nav nav-tabs flex-column">
+            <li class="nav-item  bg-light">
+              <a class="nav-link active text-dark" href="#achive1" data-toggle="tab" aria-selected="true">いっこめ</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-9">
+          <div class="tab-content">
+            <div id="achive1" class="tab-pane fade show active">
+              <div class="card">
+                <div class="card-body">
+                  <h4>なんとかページはできました</h4><hr />
+                  <p>
+                    はい、えるると申します。
+                  </p>
+                  <p>
+                    なんとかウェブページを作成しました。
+                    ちょっと全部自作にしてみようかなーと思ってみたりもしていろいろやってみていたのですが、HTML初心者なのでめちゃくちゃ苦労しまして、
+                    結局Bootstrapに頼ることにしました。
+                    なかなかいいものですけど素材が作れない人なので殺風景ですねw
+                  </p>
+                  <p>
+                    なにかしらいいものをUpしていく、というよりなにかしらを解説する、みたいな感じになるかと思います。
+                    競プロだったり…100本ノックだったり…その他だったり…。
+                  </p>
+                  <p>
+                    せっかくなのでこのウェブページの構成についてちょっと書いておきます。
+                  </p>
+                  <p>
+                    このページは<code class="language-markup">index.html</code>なわけですが、
+                    <code class="language-markup">connect.js</code>に記載しているようにディレクトリ内のHTMLファイルを、
+                    <code class="language-markup">index.html</code>内部に読み込んで表示しております。
+                    使用したのはJQueryのloadでそれぞれのidの位置にファイル内容を読み込んでいます。
+                  </p>
+                  <p>
+                    ここで曲者だったのが<code class="language-markup">Prism.js</code>。
+                    どうやらBootstrapなんかはloadした中身に対しても自動的に対応してくれているみたいなのだが、
+                    <code class="language-markup">Prism.js</code>は勝手にやってくれないのでコードが表示されない…。
+                    中身を見てみると、DOMContentLoaded時にハイライトを行うようにセットされているが、
+                    JQueryのloadで読み込まれるのはその後…というわけでloadした後に手動でセッティングしないといけない。
+                  </p>
+                  <p>
+                    ということで<code class="language-markup">connect.js</code>の中でのこのページを読み込む記述はこんな感じ。
+                    <pre class="line-numbers language-js"><code>$("#blog").load("/src/html/blog.html",function(){
+                        self.Prism.highlightAll();
+                      });
+                    </code></pre>
+                  </p>
+                  <p>
+                    ファイルを取り込むようにしている場合は<code class="language-js">self.Prism.fileHighlight()</code>、
+                    コードを直接書く場合には<code class="language-js">self.Prism.highlightAll()</code>を使うと、
+                    うまいこと適用してくれます。
+                  </p>
+                  <p>
+                    注意点としては、このJSを実行する前にPrism.jsを読み込んでいないといけないので、scriptタグを書くのに注意するぐらいでしょうか。
+                    deferを全部につけておくと順番通りに読んでくれるみたいです。
+                    詳しく説明する知識はないです。
+                  </p>
+                  <p>
+                    ちょっと思ってる問題点としては、<code class="language-markup">index.html</code>しかない上に#とかで指定しても動かないところです。
+                    (そもそもページを全部分けてやればすべての問題解決だったのでは?という話ではある)
+                  </p>
+                  <p>
+                    そんなこんなでいろいろ更新していけたらいいなーと思います。
+                    ではでは〜
+                  </p><hr />
+                  2018/04/23 01:26
+                </div>
               </div>
             </div>
           </div>
@@ -96,5 +98,5 @@
       </div>
     </div>
   </div>
-</div>
-  
+</body>
+</html>
