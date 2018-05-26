@@ -13,6 +13,15 @@ document.addEventListener("DOMContentLoaded",function(){
     $("#chapter2").load("/src/html/nlp/chapter2.html",function(){
       self.Prism.fileHighlight();
     });
+    $("#chapter3").load("/src/html/nlp/chapter3.html",function(){
+      self.Prism.fileHighlight();
+    });
+    $("#chapter4").load("/src/html/nlp/chapter4.html",function(){
+      self.Prism.fileHighlight();
+    });
+    $("#chapter5").load("/src/html/nlp/chapter5.html",function(){
+      self.Prism.fileHighlight();
+    });
   });
   $("#atcoder").load("/src/html/atcoder.html");
 });
