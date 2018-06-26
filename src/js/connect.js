@@ -24,4 +24,5 @@ document.addEventListener("DOMContentLoaded",function(){
     });
   });
   $("#atcoder").load("/src/html/atcoder.html");
+  $("#version").load("/version");
 });
