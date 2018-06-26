@@ -29,35 +29,6 @@
                   競プロだったり…100本ノックだったり…その他だったり…。
                 </p>
                 <p>
-                  という感じでせっかくなのでこのウェブページ作るのにちょっと苦難したところについてちょっと書いておきます。
-                </p>
-                <p>
-                  このページは<code class="language-markup">index.html</code>なわけですが、別のHTMLファイルを、
-                  <code class="language-markup">index.html</code>内部に読み込んで表示しております。
-                  使用したのはJQueryのloadでそれぞれのidの位置にファイル内容を読み込んでいます。
-                </p>
-                <p>
-                  ここで曲者だったのが<code class="language-markup">Prism.js</code>。
-                  どうやらBootstrapなんかはloadした中身に対しても自動的に対応してくれているみたいなのですが、
-                  <code class="language-markup">Prism.js</code>は勝手にやってくれないのでコードが表示されない…。
-                  中身を見てみると、DOMContentLoaded時にハイライトを行うようにセットされているのですが、
-                  JQueryのloadでHTMLが読み込まれるのはその後…というわけでloadした後に手動でセッティングしないといけない。
-                </p>
-                <p>
-                  ファイルを取り込むようにしている場合は<code class="language-js">self.Prism.fileHighlight()</code>、
-                  コードを直接書く場合には<code class="language-js">self.Prism.highlightAll()</code>を使うと、
-                  うまいこと適用してくれます。
-                  ずっとhighlightAll()だけを書き続けて適応されない…適応されない…って言ってました…()
-                </p>
-                <p>
-                  注意点としては、このJSを実行する前にPrism.jsを読み込んでいないといけないので、scriptタグを書くのに注意するぐらいでしょうか。
-                  deferをつけておくと順番通りに読んでくれるみたいです。
-                </p>
-                <p>
-                  ちょっと思ってる問題点としては、まだちゃんと見れるところが<code class="language-markup">index.html</code>しかない上に#とかで指定しても動かないところです。
-                  (そもそもページを全部分けてやればすべての問題解決だったのでは?という話ではある)
-                </p>
-                <p>
                   そんなこんなでいろいろ更新していけたらいいなーと思います。
                   ではでは〜
                 </p><hr />
