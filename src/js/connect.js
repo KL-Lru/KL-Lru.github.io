@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded",function(){
-  $("#navigater").load("/src/html/navi.html");
+  $("#navigater").load("/src/html/navi.html",function(){
+    $("#version").load("/version");
+  });
   $("#top").load("/src/html/top.html");
   $("#profile").load("/src/html/profile.html");
   $("#blog").load("/src/html/blog.html",function(){
@@ -24,5 +26,4 @@ document.addEventListener("DOMContentLoaded",function(){
     });
   });
   $("#atcoder").load("/src/html/atcoder.html");
-  $("#version").load("/version");
 });
