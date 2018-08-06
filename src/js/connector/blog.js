@@ -1,0 +1,9 @@
+document.addEventListener("DOMContentLoaded",function(){
+  $("#navigater").load("/src/html/navi.html",function(){
+    $("#version").load("/version");
+  });
+  $("#blog").load("/src/html/blog.html",function(){
+    self.Prism.highlightAll();
+  });
+  $('body').bootstrapMaterialDesign();
+}
