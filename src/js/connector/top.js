@@ -4,4 +4,4 @@ document.addEventListener("DOMContentLoaded",function(){
   });
   $("#top").load("/src/html/top.html");
   $('body').bootstrapMaterialDesign();
-}
+});

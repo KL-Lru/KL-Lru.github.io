@@ -4,4 +4,4 @@ document.addEventListener("DOMContentLoaded",function(){
   });
   $("#profile").load("/src/html/profile.html");
   $('body').bootstrapMaterialDesign();
-}
+});

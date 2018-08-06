@@ -4,4 +4,4 @@ document.addEventListener("DOMContentLoaded",function(){
   });
   $("#atcoder").load("/src/html/atcoder.html");
   $('body').bootstrapMaterialDesign();
-}
+});

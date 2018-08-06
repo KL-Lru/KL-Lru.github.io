@@ -6,4 +6,4 @@ document.addEventListener("DOMContentLoaded",function(){
     self.Prism.highlightAll();
   });
   $('body').bootstrapMaterialDesign();
-}
+});
