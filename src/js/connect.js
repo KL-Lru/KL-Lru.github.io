@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded",function(){
     $("#chapter5").load("/src/html/nlp/chapter5.html",function(){
       self.Prism.fileHighlight();
     });
-    $('body').bootstrapMaterialDesign();
   });
   $("#atcoder").load("/src/html/atcoder.html");
 });
