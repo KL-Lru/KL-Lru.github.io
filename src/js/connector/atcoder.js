@@ -3,5 +3,4 @@ document.addEventListener("DOMContentLoaded",function(){
     $("#version").load("/version");
   });
   $("#atcoder").load("/src/html/atcoder.html");
-  $('body').bootstrapMaterialDesign();
 });

@@ -3,7 +3,9 @@ document.addEventListener("DOMContentLoaded",function(){
     $("#version").load("/version");
   });
   $("#blog").load("/src/html/blog.html",function(){
+    $("#achive1").load("/src/html/blog/achive1.html",function(){
+      self.Prism.fileHighlight();
+    });
     self.Prism.highlightAll();
   });
-  $('body').bootstrapMaterialDesign();
 });

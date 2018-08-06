@@ -3,5 +3,4 @@ document.addEventListener("DOMContentLoaded",function(){
     $("#version").load("/version");
   });
   $("#top").load("/src/html/top.html");
-  $('body').bootstrapMaterialDesign();
 });

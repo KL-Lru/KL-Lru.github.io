@@ -3,5 +3,4 @@ document.addEventListener("DOMContentLoaded",function(){
     $("#version").load("/version");
   });
   $("#profile").load("/src/html/profile.html");
-  $('body').bootstrapMaterialDesign();
 });
