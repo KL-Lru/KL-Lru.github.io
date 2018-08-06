@@ -1,126 +1,104 @@
-<!DOCTYPE HTML>
-<html lang="ja">
-<head>
-  <!-- meta -->
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-  <meta http-equiv="Pragma" content="no-cache"/>
-  <meta http-equiv="Cache-Control" content="no-cache"/> 
-  <!-- link -->
-  <link rel="stylesheet" href="/src/css/prism.css"/>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
-  <!-- script -->
-  <script src="/src/js/jquery-3.3.1.min.js" defer></script>
-  <script src="/src/js/prism.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" defer></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" defer></script>
-
-  <title>Lru Room</title>
-</head>
-
-<body>
-  <div class="card">
-    <div class="card-body">
-      <h4 class="card-title">Chapter1</h4>
-      <hr />
-      <h5>p00</h5>
-      <pre class="line-numbers" data-src="/NLP100knock/Chapter1/p00.py"></pre>
-      <p>
-        スライスを使うだけでok。
-        スライスは[開始位置:終了位置:間隔]で指定するだけで、指定した配列内の要素の配列を返してくれる。
-        文字列も文字の配列で、間隔に-1を指定することで「末尾から1ずつ」という感じの指定になる。
-        指定していない部分は全部が対象になる。
-        間隔を指定しない場合は[開始位置:終了位置]だけでok。
-      </p>
-      <hr />
-      <h5>p01</h5>
-      <pre class="line-numbers" data-src="/NLP100knock/Chapter1/p01.py"></pre>
-      <p>
-        同じくスライスのみでok。
-        1文字目から2文字間隔で取ればいいので、[::2]で取得できる。
-      </p>
-      <hr />
-      <h5>p02</h5>
-      <pre class="line-numbers" data-src="/NLP100knock/Chapter1/p02.py"></pre>
-      <p>
-        zipを使うと2つの要素を同時にfor文で回せる。
-        どちらかの要素が無くなった時点で終わるので長さが違う場合は注意。
-      </p>
-      <hr />
-      <h5>p03</h5>
-      <pre class="line-numbers" data-src="/NLP100knock/Chapter1/p03.py"></pre>
-      <p>
-        ,やら.が邪魔なので消してからsplitして長さを出すだけでok。
-        splitはデフォルトでは空白やタブを区切り文字としてくれる。
-        Pythonで配列の長さを返すのはlen()、配列の関数ではないのによく間違える。
-        []内は内包表現。[nanika(i) for i in 配列]みたいに記述すると配列内の要素を一つ一つiに取り出して何かしたものを要素とする配列ができる。
-      </p>
-      <hr />
-      <h5>p04</h5>
-      <pre class="line-numbers" data-src="/NLP100knock/Chapter1/p04.py"></pre>
-      <p>
-        スライスと三項演算子を使うとさらっと出来る。
-        三項演算子は 真の時の値 条件文 else 偽の時の値 と書くだけ。
-        条件文が真なら前、偽なら後の値になる。
-      </p>
-      <hr />
-      <h5>p05</h5>
-      <pre class="line-numbers" data-src="/NLP100knock/Chapter1/p05.py"></pre>
-      <p>
-        単語単位なら空白でsplit、文字単位なら空白を排除して1文字ずつ見るだけでok。
-        配列内重複削除を今回はforで回して他の配列に入れることで実装しているがsetを使うとスマートにできるらしい。
-      </p>
-      <hr />
-      <h5>p06</h5>
-      <pre class="line-numbers" data-src="/NLP100knock/Chapter1/p06.py"></pre>
-      <p>
-        setにある関数を使うと良さそう。
-        <div class="d-flex flex-column">
-          <div class="d-flex flex-row">
-            <div class="col-6">
-              union
-            </div>
-            <div class="col-6">
-              和集合
-            </div>
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title">Chapter1</h4>
+    <hr />
+    <h5>p00</h5>
+    <pre class="line-numbers" data-src="/NLP100knock/Chapter1/p00.py"></pre>
+    <p>
+      スライスを使うだけでok。
+      スライスは[開始位置:終了位置:間隔]で指定するだけで、指定した配列内の要素の配列を返してくれる。
+      文字列も文字の配列で、間隔に-1を指定することで「末尾から1ずつ」という感じの指定になる。
+      指定していない部分は全部が対象になる。
+      間隔を指定しない場合は[開始位置:終了位置]だけでok。
+    </p>
+    <hr />
+    <h5>p01</h5>
+    <pre class="line-numbers" data-src="/NLP100knock/Chapter1/p01.py"></pre>
+    <p>
+      同じくスライスのみでok。
+      1文字目から2文字間隔で取ればいいので、[::2]で取得できる。
+    </p>
+    <hr />
+    <h5>p02</h5>
+    <pre class="line-numbers" data-src="/NLP100knock/Chapter1/p02.py"></pre>
+    <p>
+      zipを使うと2つの要素を同時にfor文で回せる。
+      どちらかの要素が無くなった時点で終わるので長さが違う場合は注意。
+    </p>
+    <hr />
+    <h5>p03</h5>
+    <pre class="line-numbers" data-src="/NLP100knock/Chapter1/p03.py"></pre>
+    <p>
+      ,やら.が邪魔なので消してからsplitして長さを出すだけでok。
+      splitはデフォルトでは空白やタブを区切り文字としてくれる。
+      Pythonで配列の長さを返すのはlen()、配列の関数ではないのによく間違える。
+      []内は内包表現。[nanika(i) for i in 配列]みたいに記述すると配列内の要素を一つ一つiに取り出して何かしたものを要素とする配列ができる。
+    </p>
+    <hr />
+    <h5>p04</h5>
+    <pre class="line-numbers" data-src="/NLP100knock/Chapter1/p04.py"></pre>
+    <p>
+      スライスと三項演算子を使うとさらっと出来る。
+      三項演算子は 真の時の値 条件文 else 偽の時の値 と書くだけ。
+      条件文が真なら前、偽なら後の値になる。
+    </p>
+    <hr />
+    <h5>p05</h5>
+    <pre class="line-numbers" data-src="/NLP100knock/Chapter1/p05.py"></pre>
+    <p>
+      単語単位なら空白でsplit、文字単位なら空白を排除して1文字ずつ見るだけでok。
+      配列内重複削除を今回はforで回して他の配列に入れることで実装しているがsetを使うとスマートにできるらしい。
+    </p>
+    <hr />
+    <h5>p06</h5>
+    <pre class="line-numbers" data-src="/NLP100knock/Chapter1/p06.py"></pre>
+    <p>
+      setにある関数を使うと良さそう。
+      <div class="d-flex flex-column">
+        <div class="d-flex flex-row">
+          <div class="col-6">
+            union
           </div>
-          <div class="d-flex flex-row">
-            <div class="col-6">
-              intersection
-            </div>
-            <div class="col-6">
-              積集合
-            </div>
-          </div>
-          <div class="d-flex flex-row">
-            <div class="col-6">
-              difference
-            </div>
-            <div class="col-6">
-              差集合
-            </div>
+          <div class="col-6">
+            和集合
           </div>
         </div>
-      </p>
-      <hr />
-      <h5>p07</h5>
-      <pre class="line-numbers" data-src="/NLP100knock/Chapter1/p07.py"></pre>
-      <p>
-        文字をsprintfスタイルで入れ込むだけ。
-        format関数を使ってもよさそう。
-      </p>
-      <hr />
-      <h5>p08</h5>
-      <pre class="line-numbers" data-src="/NLP100knock/Chapter1/p08.py"></pre>
-      <p>
-        小文字判定はislower()でできる。
-        
-      </p>
-      <hr />
-      <h5>p09</h5>
-      <pre class="line-numbers" data-src="/NLP100knock/Chapter1/p09.py"></pre>
-      ramdomパッケージのsampleは指定したリストから指定した個数を重複無くランダムに取ってくれる。
-      与えたリストと同じ長さを与えるとリストがランダムに入れ替わる。
-    </div>
+        <div class="d-flex flex-row">
+          <div class="col-6">
+            intersection
+          </div>
+          <div class="col-6">
+            積集合
+          </div>
+        </div>
+        <div class="d-flex flex-row">
+          <div class="col-6">
+            difference
+          </div>
+          <div class="col-6">
+            差集合
+          </div>
+        </div>
+      </div>
+    </p>
+    <hr />
+    <h5>p07</h5>
+    <pre class="line-numbers" data-src="/NLP100knock/Chapter1/p07.py"></pre>
+    <p>
+      文字をsprintfスタイルで入れ込むだけ。
+      format関数を使ってもよさそう。
+    </p>
+    <hr />
+    <h5>p08</h5>
+    <pre class="line-numbers" data-src="/NLP100knock/Chapter1/p08.py"></pre>
+    <p>
+      小文字判定はislower()でできる。
+      
+    </p>
+    <hr />
+    <h5>p09</h5>
+    <pre class="line-numbers" data-src="/NLP100knock/Chapter1/p09.py"></pre>
+    ramdomパッケージのsampleは指定したリストから指定した個数を重複無くランダムに取ってくれる。
+    与えたリストと同じ長さを与えるとリストがランダムに入れ替わる。
   </div>
-</body>
-</html>
+</div>
