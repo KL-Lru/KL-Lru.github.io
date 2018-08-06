@@ -6,6 +6,9 @@ document.addEventListener("DOMContentLoaded",function(){
     $("#achive1").load("/src/html/blog/achive1.html",function(){
       self.Prism.fileHighlight();
     });
+    $("#achive2").load("/src/html/blog/achive2.html",function(){
+      self.Prism.fileHighlight();
+    });
     self.Prism.highlightAll();
   });
 });
