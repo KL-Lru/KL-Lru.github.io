@@ -5,77 +5,75 @@
     <h5>p00</h5>
     <pre class="line-numbers" data-src="/NLP100knock/Chapter1/p00.py"></pre>
     <p>
-      スライスを使うだけでok。
-      スライスは[開始位置:終了位置:間隔]で指定するだけで、指定した配列内の要素の配列を返してくれる。
-      文字列も文字の配列で、間隔に-1を指定することで「末尾から1ずつ」という感じの指定になる。
-      指定していない部分は全部が対象になる。
-      間隔を指定しない場合は[開始位置:終了位置]だけでok。
+      スライスを使うだけでokです.
+      スライスは[開始位置:終了位置:間隔]で指定するだけで、指定した配列内の要素の配列を返してくれます.
+      文字列も文字の配列で、間隔に-1を指定することで「末尾から1ずつ」という感じの指定になります.
     </p>
     <hr />
     <h5>p01</h5>
     <pre class="line-numbers" data-src="/NLP100knock/Chapter1/p01.py"></pre>
     <p>
-      同じくスライスのみでok。
-      1文字目から2文字間隔で取ればいいので、[::2]で取得できる。
+      同じくスライスのみでokです.
+      1文字目から2文字間隔で取ればいいので、[::2]で取得できます.
     </p>
     <hr />
     <h5>p02</h5>
     <pre class="line-numbers" data-src="/NLP100knock/Chapter1/p02.py"></pre>
     <p>
-      zipを使うと2つの要素を同時にfor文で回せる。
-      どちらかの要素が無くなった時点で終わるので長さが違う場合は注意。
+      zipを使うと2つの要素を同時にfor文で回せます.
+      どちらかの要素が無くなった時点で終わるので長さが違う場合は注意しましょう.
     </p>
     <hr />
     <h5>p03</h5>
     <pre class="line-numbers" data-src="/NLP100knock/Chapter1/p03.py"></pre>
     <p>
-      ,やら.が邪魔なので消してからsplitして長さを出すだけでok。
-      splitはデフォルトでは空白やタブを区切り文字としてくれる。
-      Pythonで配列の長さを返すのはlen()、配列の関数ではないのによく間違える。
-      []内は内包表現。[nanika(i) for i in 配列]みたいに記述すると配列内の要素を一つ一つiに取り出して何かしたものを要素とする配列ができる。
+      ,やら.が邪魔なので消してからsplitして長さを出すだけでokです.
+      splitはデフォルトでは空白やタブを区切り文字としてくれます.
+      Pythonで配列の長さを返すのはlen(), 配列の関数ではないのによく間違える...
+      []内は内包表現で, [hoge(i) for i in 配列]みたいに記述すると配列内の要素を一つ一つiに取り出して, hogeしたものを要素とする配列ができます.
     </p>
     <hr />
     <h5>p04</h5>
     <pre class="line-numbers" data-src="/NLP100knock/Chapter1/p04.py"></pre>
     <p>
-      スライスと三項演算子を使うとさらっと出来る。
-      三項演算子は 真の時の値 条件文 else 偽の時の値 と書くだけ。
-      条件文が真なら前、偽なら後の値になる。
+      スライスと三項演算子を使うとさらっと出来ます.
+      三項演算子は 真の時の値 if 条件 else 偽の時の値 と書くだけ.
+      条件文が真なら前、偽なら後の値になります.
     </p>
     <hr />
     <h5>p05</h5>
     <pre class="line-numbers" data-src="/NLP100knock/Chapter1/p05.py"></pre>
     <p>
-      単語単位なら空白でsplit、文字単位なら空白を排除して1文字ずつ見るだけでok。
-      配列内重複削除を今回はforで回して他の配列に入れることで実装しているがsetを使うとスマートにできるらしい。
+      単語単位なら空白でsplit, 文字単位なら空白を排除して1文字ずつ見るだけでokです.
+      配列内重複削除を今回はforで回して他の配列に入れることで実装していますが, setを使うとスマートにできます.
     </p>
     <hr />
     <h5>p06</h5>
     <pre class="line-numbers" data-src="/NLP100knock/Chapter1/p06.py"></pre>
     <p>
-      setにある関数を使うと良さそう。
+      setにある関数を使うと良さそうです.
       <div class="d-flex flex-column">
         <div class="d-flex flex-row">
-          <div class="col-6">
+          <div class="col-3">
             union
           </div>
-          <div class="col-6">
+          <div class="col-3">
             和集合
           </div>
         </div>
         <div class="d-flex flex-row">
-          <div class="col-6">
+          <div class="col-3">
             intersection
           </div>
-          <div class="col-6">
+          <div class="col-3">
             積集合
           </div>
         </div>
         <div class="d-flex flex-row">
-          <div class="col-6">
+          <div class="col-3">
             difference
           </div>
-          <div class="col-6">
+          <div class="col-3">
             差集合
           </div>
         </div>
@@ -85,20 +83,19 @@
     <h5>p07</h5>
     <pre class="line-numbers" data-src="/NLP100knock/Chapter1/p07.py"></pre>
     <p>
-      文字をsprintfスタイルで入れ込むだけ。
-      format関数を使ってもよさそう。
+      文字をsprintfスタイルで入れ込むだけです.
+      format関数でもいいかもしれません.
     </p>
     <hr />
     <h5>p08</h5>
     <pre class="line-numbers" data-src="/NLP100knock/Chapter1/p08.py"></pre>
     <p>
-      小文字判定はislower()でできる。
-      
+      小文字判定はislower()でできます.
     </p>
     <hr />
     <h5>p09</h5>
     <pre class="line-numbers" data-src="/NLP100knock/Chapter1/p09.py"></pre>
-    ramdomパッケージのsampleは指定したリストから指定した個数を重複無くランダムに取ってくれる。
-    与えたリストと同じ長さを与えるとリストがランダムに入れ替わる。
+    ramdomパッケージのsampleは指定したリストから指定した個数を重複無くランダムに取ってくれるます.
+    与えたリストと同じ長さを与えるとリストがランダムに入れ替わったリストが得られます.
   </div>
 </div>
