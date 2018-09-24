@@ -3,7 +3,13 @@ document.addEventListener("DOMContentLoaded",function(){
   $("#navigater").load("/src/html/navi.html",function(){
     $("#version").load("/version");
   });
-  $("#algorithm").load("/src/html/comp/" + arg + ".html", function(){
-    self.Prism.highlightAll();
-  });
+  if (arg){
+    $("#algorithm").load("/src/html/comp/" + arg + ".html", function(){
+      self.Prism.highlightAll();
+    });
+  }else{
+    $("#algorithm").load("/src/html/algorithm.html", function(){
+      self.Prism.highlightAll();
+    });
+  }
 });
