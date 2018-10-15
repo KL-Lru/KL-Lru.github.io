@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded",function(){
   if (arg){
     $("#algorithm").load("/src/html/comp/" + arg + ".html", function(){
       self.Prism.highlightAll();
+      MathJax.Hub.Queue();
     });
   }else{
     $("#algorithm").load("/src/html/algorithm.html", function(){
