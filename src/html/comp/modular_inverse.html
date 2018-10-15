@@ -34,7 +34,7 @@
     </p>
     <p>
       例えば上の計算を見てみると, $5$ を法とする群の中では,
-      $$ (2 × 3 \equiv 1 ({\rm mod} 5) $$
+      $$ 2 × 3 \equiv 1 ({\rm mod} 5) $$
       であるので $2$ の逆数は $3$ であり, $3$ の逆数は $2$ であるということが分かります. 
       つまり, 「$2$ で割る」ということは「$3$ を掛ける」ということに等しくなります. 
     </p>
@@ -49,7 +49,7 @@
     </p>
     <p>
       証明はどうしようか迷いましたが, 折りたたんで置くので読みたい人は読んでって感じです.
-      <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#proof0">証明</button>
+      <button type="button" class="btn btn-raised btn-info" data-toggle="collapse" data-target="#proof0">証明</button>
       <div id="proof0" class="collapse">
         $a$と$p$は互いに素であるため, $a, 2a, ..., (p-1)a$は全てpの倍数ではなく, pによる剰余は相異なる.
         よって
@@ -109,7 +109,7 @@
     </p>
     <p>
       証明は折りたたみー.
-      <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#proof1">証明</button>
+      <button type="button" class="btn btn-raised btn-info" data-toggle="collapse" data-target="#proof1">証明</button>
       <div id="proof1" class="collapse">
         上に加えて$a$を$b$で割った商を$q$とすると, 
         $$a = qb + r $$
@@ -143,7 +143,7 @@
     <p>
       $ax + by = c$が整数解を持つことの必要十分条件は, $c$が$gcd(a,b)$の倍数になることです.
       例によって証明は折りたたみ.
-      <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#proof2">証明</button>
+      <button type="button" class="btn btn-raised btn-info" data-toggle="collapse" data-target="#proof2">証明</button>
       <div id="proof2" class="collapse">
         <hr />
         <h6>$ax + by = c$が整数解を持つ \Rightarrow $c$が$gcd(a,b)$の倍数になる.</h6>
@@ -209,7 +209,6 @@
       前のステップの解は$x = y^', y = x^' - qy^'$となる.
       また, 問題が解けるのは, ${\rm gcd}(a,b)x + 0y ={\rm gcd}(a,b)$となる時であり, 明らかに$(1,0)$が解となる.
       というような形で問題を解くことが出来ます.
-      多少難しいですが, フェルマーの小定理よりも高速で解を求められることが多いです.
     </p>
     <p>
       なお, このアルゴリズムを用いたモジュラ逆数の求め方は簡単で, $a$に求めたい数を, $b$に基数を入れて動かせば, xにモジュラ逆数が出てきてくれます.
