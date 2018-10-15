@@ -43,9 +43,10 @@
       このモジュラ逆数の求め方をどうにかしよう〜というのがこのページです.
     </p><hr />
     <h6>フェルマーの小定理</h6>
-    <div class="card">
+    まずはフェルマーの小定理がどんなものなのかちゃちゃっと見ましょう.
+    <div class="card m-1">
       <div class="card-body">
-        <h4 class="card-title">フェルマーの小定理</h4><hr />
+        <h5 class="card-title">フェルマーの小定理</h5><hr />
         $p$ を素数とし, $a$ を $p$ の倍数でない整数とするとき
         $$a^{p-1} \equiv 1 ~({\rm mod} p)$$
       </div>
@@ -56,9 +57,9 @@
         <button type="button" class="btn btn-raised btn-info" data-toggle="collapse" data-target="#proof0">証明</button>
       </p>
       <div id="proof0" class="collapse">
-        <div class="card">
+        <div class="card m-1">
           <div class="card-body">
-            <h4 class="card-title">フェルマーの小定理証明</h4><hr />
+            <h5 class="card-title">フェルマーの小定理証明</h5><hr />
             $a$と$p$は互いに素であるため, $a, 2a, ..., (p-1)a$は全てpの倍数ではなく, pによる剰余は相異なる.
             よって
             $$a \times 2a \times ... \times (p-1)a = (p-1)! ~({\rm mod} p)$$
@@ -112,9 +113,9 @@
       これを応用することで高速にモジュラ逆数を計算することが出来ます.
       まずユークリッドの互除法はこちら
     </p>
-    <div class="card">
+    <div class="card m-1">
       <div class="card-body">
-        <h4 class="card-title">ユークリッドの互除法</h4><hr />
+        <h5 class="card-title">ユークリッドの互除法</h5><hr />
         2つの自然数$a,b(a \geq b)$について, $a$を$b$で割った剰余を$r$とし, $a,b$の最大公約数を${\rm gcd}(a,b)$とする.
         このとき, ${\rm gcd}(a,b) = {\rm gcd}(b,r)$であり, ${\rm gcd}(a,0) = a$である.
         ${\rm gcd}(a,b)$はその2つの自然数の大きい方を小さい方で割り, その除数と剰余について同様の操作を繰り返していくことで求められる.
@@ -126,9 +127,9 @@
         <button type="button" class="btn btn-raised btn-info" data-toggle="collapse" data-target="#proof1">証明</button>
       </p>
       <div id="proof1" class="collapse">
-        <div class="card">
+        <div class="card m-1">
           <div class="card-body">
-            <h4 class="card-title">ユークリッドの互除法の証明</h4><hr />
+            <h5 class="card-title">ユークリッドの互除法の証明</h5><hr />
             上に加えて$a$を$b$で割った商を$q$とすると, 
             $$a = qb + r $$
             となる.
@@ -162,37 +163,37 @@
       </div>
     </div>
     <p>
-      $ax + by = c$が整数解を持つことの必要十分条件は, $c$が$\{rm gcd}(a,b)$の倍数になることです.
+      $ax + by = c$が整数解を持つことの必要十分条件は, $c$が${\rm gcd}(a,b)$の倍数になることです.
       例によって証明は折りたたみ.
       <p>
         <button type="button" class="btn btn-raised btn-info" data-toggle="collapse" data-target="#proof2">証明</button>
       </p>
       <div id="proof2" class="collapse">
-        <div class="card">
+        <div class="card m-1">
           <div class="card-body">
-            <h4 class="card-title">拡張ユークリッドの互除法に必要な証明</h4><hr />
-            <h6>$ax + by = c$が整数解を持つ $\Rightarrow$ $c$が$\{rm gcd}(a,b)$の倍数になる.</h6>
+            <h5 class="card-title">拡張ユークリッドの互除法に必要な証明</h5><hr />
+            <h6>$ax + by = c$が整数解を持つ $\Rightarrow$ $c$が${\rm gcd}(a,b)$の倍数になる.</h6>
             <p>
-              $a,b$は$\{rm gcd}(a,b)$の倍数である.
-              よって, 整数$x,y$について$ax + by$は$\{rm gcd}(a,b)$の倍数であり, すなわち$c$は$\{rm gcd}(a,b)$の倍数である.
+              $a,b$は${\rm gcd}(a,b)$の倍数である.
+              よって, 整数$x,y$について$ax + by$は${\rm gcd}(a,b)$の倍数であり, すなわち$c$は${\rm gcd}(a,b)$の倍数である.
             </p>
             <hr />
             <h6>$ax + by = c$が整数解を持つ $\Leftarrow$ $c$が$gcd(a,b)$の倍数になる.</h6>
             <p>
-              $s, t$を, $a,b$をそれぞれ$\{rm gcd}(a,b)$で割った数とする.
+              $s, t$を, $a,b$をそれぞれ${\rm gcd}(a,b)$で割った数とする.
               この時,  $s,t$は互いに素となる.
               ここで, $ax + by = 1$が整数解を持つことの必要十分条件が, $a$と$b$が互いに素であることを証明する.
             </p>
-            <div class="card">
+            <div class="card m-1">
               <div class="card-body">
-                <h4 class="card-title">補題証明</h4><hr />
+                <h5 class="card-title">補題証明</h5><hr />
                 <h6>$ax + by = 1$が整数解を持つ $\Rightarrow$ $a$と$b$が互いに素である</h6>
                 <p>
                   $a$と$b$が2以上の公約数を持つと仮定すると, $ax+by$は整数解を持つことが出来ないため矛盾が生じる.
                   よって$a$と$b$は互いに素である
                 </p>
                 <hr />
-                <h6>$ax + by = 1$が整数解を持つ $\Lightarrow$ $a$と$b$が互いに素である</h6>
+                <h6>$ax + by = 1$が整数解を持つ $\Leftarrow$ $a$と$b$が互いに素である</h6>
                 <p>
                   $a$と$b$が互いに素であるため, $a$の倍数全体の集合について, $b$を法として合同となる数を同一視する, という同値関係で作られる剰余類は,
                   その全体が$b$を法とする既約剰余類群となる.
@@ -206,7 +207,7 @@
             <p>
               以上から$ax + by = 1$が整数解を持つことの必要十分条件は, $a$と$b$が互いに素であることである.
               よって$s,t$は互いに素であるため, $sx + ty = 1$は整数解を持つ.
-              よって, 両辺に$\{rm gcd}(a,b)$を掛けると$ax + by = {\rm gcd}(a,b)$であり, $ax + by = c$が整数解を持つことが示された.
+              よって, 両辺に${\rm gcd}(a,b)$を掛けると$ax + by = {\rm gcd}(a,b)$であり, $ax + by = c$が整数解を持つことが示された.
             </p>
           </div>
         </div>
