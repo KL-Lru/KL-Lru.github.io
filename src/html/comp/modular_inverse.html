@@ -249,7 +249,7 @@
       #define MOD 1e+9
       ll ext_gcd(ll a, ll b, ll& x, ll& y){
         ll gcd = a;
-        if(b == 0){
+        if(b != 0){
           gcd = ext_gcd(b, a % b, y, x);
           y = (y - (a / b) * x) % MOD; // モジュラ逆数じゃなくて方程式計算の時は%MODは不要
         } else {
