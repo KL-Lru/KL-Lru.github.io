@@ -15,25 +15,16 @@
   <script src="/src/js/popper.js" defer></script>
   <script src="/src/js/bootstrap.js" defer></script>
   <script src="/src/js/material-design.js" defer></script>
-  <script defer>
-      document.addEventListener("DOMContentLoaded",function(){
-        $("#navigater").load("/src/html/navi.html",function(){
-          $("#version").load("/version");
-        });
-      });
-      </script>
   <script src="/src/js/apply-material.js"defer></script>
+  <script defer>
+    self.Prism.highlightAll();
+  </script>
   <title>Lru Room</title>
 </head>
 
 <body>
   <div class="p-3">
     <div class="container-fluid">
-      <!-- navi -->
-      <div id="navigater">
-      </div>
-      <!-- End navi -->
-
       <!-- Contents -->
       <div class="mt-2">
         <div class="card">
@@ -52,7 +43,7 @@
                 <a href="#introduction" class="list-group-item">はじめに</a>
                 <a href="#build" class="list-group-item">環境構築</a>
                 <a href="#develop" class="list-group-item">開発のはじめ方</a>
-                <a href="#program" class="list-group-item active">プログラムについての雑記</a>
+                <a href="#program" class="list-group-item">プログラムについての雑記</a>
               </ul>
             </p>
             <hr />
@@ -93,9 +84,7 @@
             <h6>Ubuntuでの環境構築</h6>
             <p>
               以下のコマンドを実行していくだけで終わりです. 
-              <pre><code class="language-bash">
-                sudo apt install build-essential xorg-dev libxaw7-dev gsfonts-x11 
-              </code></pre>
+              <pre><code class="language-bash">sudo apt install build-essential xorg-dev libxaw7-dev gsfonts-x11</code></pre>
               必要なパッケージをインストールします.
               ざっくりと説明を書くと
               <table class="table">
@@ -124,13 +113,9 @@
                   </tr>
                 </tbody>
               </table>
-              <pre><code class="language-bash">
-                sudo fc-cache -fv
-              </code></pre>
+              <pre><code class="language-bash">sudo fc-cache -fv</code></pre>
               フォントをインストールする関係で, 一度フォントのキャッシュをクリアします.
-              <pre><code class="language-bash">
-                sudo reboot
-              </code></pre>
+              <pre><code class="language-bash">sudo reboot</code></pre>
               ここまで終わったら再起動します.
             </p>
             <p>
@@ -194,13 +179,9 @@
             </p>
             <p>
               準備が整い次第, WSLより以下のコマンドを実行します.
-              <pre><code class="language-bash">
-                echo 'export DISPLAY=localhost:0.0' >> ~/.bashrc
-              </code></pre>
+              <pre><code class="language-bash">echo 'export DISPLAY=localhost:0.0' >> ~/.bashrc</code></pre>
               ~/.bashrcという設定ファイルに「Xは自分のPCの0.0ってところで表示するよ!」みたいなことを書き込みます.
-              <pre><code class="language-bash">
-                source ~/.bashrc
-              </code></pre>
+              <pre><code class="language-bash">source ~/.bashrc</code></pre>
               ~/.bashrcという設定ファイルを読み込んで設定を更新します.
             </p>
             <p>
@@ -221,34 +202,27 @@
             (無駄にcdしている, という部分も多少ありますが, サーバの実行などはカレントディレクトリを移動しないとバグります.)
             <hr />
             <h6>サーバのコンパイル</h6>
-            <pre><code class="language-bash">
-              cd server
+            <pre><code class="language-bash">cd server
               ./configure
               make
-              cd ../
-            </code></pre>
+              cd ../</code></pre>
             <hr />
             <h6>クライアントのコンパイル</h6>
             <pre><code class="language-bash">
               cd client
               ./configure
               make
-              cd ../
-            </code></pre>
+              cd ../</code></pre>
             <hr />
             <h6>サーバの実行</h6>
-            <pre><code class="language-bash">
-              cd server/src
+            <pre><code class="language-bash">cd server/src
               ./tndhms &
-              cd ../../
-            </code></pre>
+              cd ../../</code></pre>
             <hr />
             <h6>クライアントの実行(試合には5体実行する必要があります)</h6>
-            <pre><code class="language-bash">
-              cd client
+            <pre><code class="language-bash">cd client
               ./client &
-              cd ../
-            </code></pre>
+              cd ../</code></pre>
             <hr />
             <p>
               試合数やXを描画するか否かなどはserver/src/tndhms.cfgに記述されているので, 随時変更してください.
