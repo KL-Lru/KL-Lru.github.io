@@ -1,0 +1,270 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+<head>
+  <!-- meta -->
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta http-equiv="Pragma" content="no-cache"/>
+  <meta http-equiv="Cache-Control" content="no-cache"/> 
+  <!-- link -->
+  <link rel="stylesheet" href="/src/css/prism.css"/>
+  <link rel="stylesheet" href="/src/css/bootstrap.css"/>
+  <link rel="stylesheet" href="/src/css/material-design.css">
+  <!-- script -->
+  <script src="/src/js/jquery.js" defer></script>
+  <script src="/src/js/prism.js" defer></script>
+  <script src="/src/js/popper.js" defer></script>
+  <script src="/src/js/bootstrap.js" defer></script>
+  <script src="/src/js/material-design.js" defer></script>
+  <script defer>
+      document.addEventListener("DOMContentLoaded",function(){
+        $("#navigater").load("/src/html/navi.html",function(){
+          $("#version").load("/version");
+        });
+      });
+      </script>
+  <script src="/src/js/apply-material.js"defer></script>
+  <title>Lru Room</title>
+</head>
+
+<body>
+  <div class="p-3">
+    <div class="container-fluid">
+      <!-- navi -->
+      <div id="navigater">
+      </div>
+      <!-- End navi -->
+
+      <!-- Contents -->
+      <div class="mt-2">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">コンピュータ大貧民大会(UECda)の環境構築とか諸々</h4><hr />
+            <p>
+              はい, なんでしょう, 書く気力の一切ない時とめっちゃ書ける時があります.
+              というわけで書く気力がなかったのですが, <a href="/algorithm.html?modular_inverse">モジュラ逆数の記事</a>>頑張ったらなんかやる気が出てきたので書いておきます.
+            </p>
+            <p>
+              というわけで私の所属している研究室主催で来月の学祭中に, コンピュータに大貧民をプレイしてその強さを競う大会があるのでご案内のブログということで書いております.
+              公式サイトは<a href="http://www.tnlab.inf.uec.ac.jp/daihinmin/2018/">こちら</a>です. 
+              この記事はまぁ知ってもらえたらいいなーと思いつつ個人的に書いてる非公式な記事です.　
+              書いてある内容はこんな感じ
+              <ul class="list-group bmd-list-group-sm">
+                <a href="#introduction" class="list-group-item">はじめに</a>
+                <a href="#build" class="list-group-item">環境構築</a>
+                <a href="#develop" class="list-group-item">開発のはじめ方</a>
+                <a href="#program" class="list-group-item active">プログラムについての雑記</a>
+              </ul>
+            </p>
+            <hr />
+            <h5 id="introduction">はじめに</h5>
+            <hr />
+            <p>
+              プログラムの〆切は11月5日です. 後3週間ないです. ヤバイ.
+              とりあえず階級の紹介, ヤバイ.
+            </p>
+            <div class="card-deck">
+              <div class="card m-3">
+                <div class="card-body">
+                  <h5 class="card-title">ライト級</h5>
+                  自分の経験などから提出するカードを決めるルールなんかを作ってコンピュータにやらせるのが主流の階級です. 
+                  計算時間はそこまで取れないので, 機械学習とかを使うのは難しいです.
+                </div>
+              </div>
+              <div class="card m-3">
+                <div class="card-body">
+                  <h5 class="card-title">無制限級</h5>
+                  なんでもあり, 機械学習でもモンテカルロ木探索でもDeep Learningでもokです.(一応時間制限はあります.)
+                </div>
+              </div>
+            </div>
+            <p>
+              無制限級は今から考えるのは厳しそうかと思いますが, 参加人数がそこまで多くないので全然ワンチャンあります.
+              過去のプログラムは配布しているので, それの改良とかでも無論大丈夫です.
+              なお, たまに公式サーバ含めバグが残ってるので, 見つけた方は報告していただけると幸いです.
+            </p>
+            <hr />
+            <h5 id="build">環境構築</h5>
+            <hr />
+            <p>
+              私はLinux使ってるのですが, みなさんはどんな感じなのでしょうか?
+              とりあえずUbuntuとWindowsについて記載しておきます.
+            </p>
+            <hr />
+            <h6>Ubuntuでの環境構築</h6>
+            <p>
+              以下のコマンドを実行していくだけで終わりです. 
+              <pre><code class="language-bash">
+                sudo apt install build-essential xorg-dev libxaw7-dev gsfonts-x11 
+              </code></pre>
+              必要なパッケージをインストールします.
+              ざっくりと説明を書くと
+              <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">package name</th>
+                    <th scope="col">discription</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">build-essential</th>
+                    <td>gcc等コンパイラ一式がインストールされます.</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">xorg-dev</th>
+                    <td>X Window System関連がインストールされます.</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">libxaw7-dev</th>
+                    <td>X11関連がインストールされます.</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">gsfonts-x11</th>
+                    <td>公開サーバが使用しているフォントを含むフォントセットがインストールされます.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <pre><code class="language-bash">
+                sudo fc-cache -fv
+              </code></pre>
+              フォントをインストールする関係で, 一度フォントのキャッシュをクリアします.
+              <pre><code class="language-bash">
+                sudo reboot
+              </code></pre>
+              ここまで終わったら再起動します.
+            </p>
+            <p>
+              以上で開発に必要なものは最低限揃います.
+            </p>
+            <hr />
+            <h6>Windowsでの環境構築</h6>
+            <p>
+              ここではCygwinとWSLの2通りの環境構築を紹介します. 
+            </p>
+            <h6>1. Cygwinでの環境構築 </h6>
+              公式サイト通りという感じではありますが, Cygwinのインストールです. 
+              公式サイトの始め方ガイドが古いのは本当に申し訳ありません.という気持ちはありますので多分近々更新されると思います.
+              WSLに比べてCygwinの速度がかなり速いので本気で開発する方はこちらをおすすめします.
+              ただし, CygwinですのでC言語でbzero関数が使えないなど多少不都合がありますのでご注意を.
+            </p>
+            <p>
+              <a href="http://www.cygwin.com/">公式サイト</a>(http://www.cygwin.com/) にアクセスし, Installing Cygwinから自身のOSのbit数に合うインストーラーをDLして実行します.
+              bit数の確認はWinキー押しながらXを押すと出てくるメニュー内の「システム」をクリックすると見れる情報の中にあった気がします. 実行時に管理者権限が必要になるかもしれませんのでその場合には許可してください. 
+            </p>
+            <p>
+              インストーラーを進めると, DLするサイトを選べ, と言われますが, これは通信速度が変わる程度でどれを選んでも問題はありません.
+              一番近そうなところを選ぶといいと思います.
+            </p>
+            <p>
+              次にインストールするパッケージを聞かれます.
+              AllをInstallにすると70GBくらいの果てしないインストールが始まってしまうので, Installする部分は必要に応じて変えたほうがいいです.
+              UECdaの場合, Devel, X11, Libsは入れておかなくてはならないので, ここはInstallにして他はdefaultで大丈夫です.
+              以降次へ、やらok、やらを押して進んで貰えれば環境構築完了です. 
+            </p>
+            <p>
+              実際にプログラムを実行するときには, CygwinのXtermというアプリケーションを利用します.
+              公式サイトには「startxwinを実行しろ」と書いてありますが, もしかすると現在はもうないかもしれません.
+              Winキーを押した時に出てくる一覧の中にCygwinの関わっていそうな「XWin Server」らしきものがあればそれです.
+              それを実行すると右下のインジケータにXをかっこ良く書いたみたいなアイコンが出てきます.
+              それを右クリック -> application -> xtermで起動できます.
+              以降の開発を始める際のコマンドなどはこちらのxtermで実行してください.
+            </p>
+            <hr />
+            <h6>2. Windows Subsystem for Linuxでの環境構築 </h6>
+            <p>
+              Linuxでも実行できるのでWSLでももちろん実行できます. 
+              基本的にUbuntuでの環境構築と同じことをしますが, WindowsにはX Window Systemを別途入れる必要があります.
+              個人の好みなどあると思いますが, とりあえずXmingで紹介します. 
+            </p>
+            <p>
+              まずWSLを有効化しましょう.
+              Winキー押しながらXを押すと出てくるメニュー内の「アプリと機能」をクリック -> 「プログラムと機能」をクリック -> 「Windowsの機能の有効化または無効化」をクリック -> Windows Subsystem for Linuxを有効化
+              有効化すると再起動とかが始まります.
+            </p>
+            <p>
+              再起動が終わったらWindows Storeに行き, Linux OS名で検索をかけると出てくるのでインストールすればインストール完了です. 
+              Ubuntuを選んだようであれば, 上に書いた手順でX以外の環境が構築できます.
+            </p>
+            <p>
+              WSLのインストールが終わったら, Xmingの<a href="https://ja.osdn.net/projects/sfnet_xming/">公式サイト(https://ja.osdn.net/projects/sfnet_xming/)にアクセスし, Xming~~~setup.exeをDLしてインストールします. 
+              Xming-mesa~~~~は不要です. 
+              本体とフォントだけをインストールすればokです.
+              インストールは特に言うことはないです.
+              インストールが終わり次第Xming起動しておいてください.
+            </p>
+            <p>
+              準備が整い次第, WSLより以下のコマンドを実行します.
+              <pre><code class="language-bash">
+                echo 'export DISPLAY=localhost:0.0' >> ~/.bashrc
+              </code></pre>
+              ~/.bashrcという設定ファイルに「Xは自分のPCの0.0ってところで表示するよ!」みたいなことを書き込みます.
+              <pre><code class="language-bash">
+                source ~/.bashrc
+              </code></pre>
+              ~/.bashrcという設定ファイルを読み込んで設定を更新します.
+            </p>
+            <p>
+              以上でWSLでの環境構築も終了です. 
+            </p>
+            <hr />
+            <h5 id="develop">開発の始め方</h5>
+            <hr />
+            C言語についてで書きます.C++も同様の手順で開発出来るはずです.
+            まず, <a href="http://www.tnlab.inf.uec.ac.jp/daihinmin/2018/downloads.html">ダウンロードページ</a>からC言語版開発キットをDLしてきます.
+            そしてこの圧縮ファイル(現状tndhm_devkit_c-20140627.tar.gz)をまず解凍して, 解凍後のフォルダに入ります. (tarが無い場合はapt等でインストールしてください)
+            <pre><code class="language-bash">
+              tar zxfv tndhm_devkit_c-20140627.tar.gz
+              cd tndhm_devkit_c-20140627
+            </code></pre>
+            以下, 順に実行すべきコマンドを羅列します.
+            (順序が異なっても問題ないよう, 実行後は解凍先ディレクトリ(今回はtndhm_devkit_c-20140627)に戻るようcdしています.)
+            (無駄にcdしている, という部分も多少ありますが, サーバの実行などはカレントディレクトリを移動しないとバグります.)
+            <hr />
+            <h6>サーバのコンパイル</h6>
+            <pre><code class="language-bash">
+              cd server
+              ./configure
+              make
+              cd ../
+            </code></pre>
+            <hr />
+            <h6>クライアントのコンパイル</h6>
+            <pre><code class="language-bash">
+              cd client
+              ./configure
+              make
+              cd ../
+            </code></pre>
+            <hr />
+            <h6>サーバの実行</h6>
+            <pre><code class="language-bash">
+              cd server/src
+              ./tndhms &
+              cd ../../
+            </code></pre>
+            <hr />
+            <h6>クライアントの実行(試合には5体実行する必要があります)</h6>
+            <pre><code class="language-bash">
+              cd client
+              ./client &
+              cd ../
+            </code></pre>
+            <hr />
+            <p>
+              試合数やXを描画するか否かなどはserver/src/tndhms.cfgに記述されているので, 随時変更してください.
+            </p>
+            <p>
+              ソース的にはclient内のcファイルを書き換えていくだけで大丈夫です.
+            </p>
+            <p>
+              それでは, プログラムお待ちしています.
+            </p>
+            2018/10/16 10:19
+          </div>
+        </div>
+      </div>
+    <!-- End Contents -->
+  </div>
+</div>
+</body>
+</html>
