@@ -32,7 +32,7 @@
             <h4 class="card-title">コンピュータ大貧民大会(UECda)の環境構築とか諸々</h4><hr />
             <p>
               はい, なんでしょう, 書く気力の一切ない時とめっちゃ書ける時があります.
-              というわけで書く気力がなかったのですが, <a href="/algorithm.html?modular_inverse">モジュラ逆数の記事</a>>頑張ったらなんかやる気が出てきたので書いておきます.
+              というわけで書く気力がなかったのですが, 頑張ったらなんかやる気が出てきたので書いておきます.
             </p>
             <p>
               というわけで私の所属している研究室主催で来月の学祭中に, コンピュータに大貧民をプレイしてその強さを競う大会があるのでご案内のブログということで書いております.
@@ -43,7 +43,6 @@
                 <a href="#introduction" class="list-group-item">はじめに</a>
                 <a href="#build" class="list-group-item">環境構築</a>
                 <a href="#develop" class="list-group-item">開発のはじめ方</a>
-                <a href="#program" class="list-group-item">プログラムについての雑記</a>
               </ul>
             </p>
             <hr />
@@ -87,13 +86,7 @@
               <pre><code class="language-bash">sudo apt install build-essential xorg-dev libxaw7-dev gsfonts-x11</code></pre>
               必要なパッケージをインストールします.
               ざっくりと説明を書くと
-              <table class="table">
-                <thead class="thead-dark">
-                  <tr>
-                    <th scope="col">package name</th>
-                    <th scope="col">discription</th>
-                  </tr>
-                </thead>
+              <table class="table m-2">
                 <tbody>
                   <tr>
                     <th scope="row">build-essential</th>
@@ -193,31 +186,28 @@
             C言語についてで書きます.C++も同様の手順で開発出来るはずです.
             まず, <a href="http://www.tnlab.inf.uec.ac.jp/daihinmin/2018/downloads.html">ダウンロードページ</a>からC言語版開発キットをDLしてきます.
             そしてこの圧縮ファイル(現状tndhm_devkit_c-20140627.tar.gz)をまず解凍して, 解凍後のフォルダに入ります. (tarが無い場合はapt等でインストールしてください)
-            <pre><code class="language-bash">
-              tar zxfv tndhm_devkit_c-20140627.tar.gz
-              cd tndhm_devkit_c-20140627
-            </code></pre>
+            <pre><code class="language-bash">tar zxfv tndhm_devkit_c-20140627.tar.gz
+cd tndhm_devkit_c-20140627</code></pre>
             以下, 順に実行すべきコマンドを羅列します.
             (順序が異なっても問題ないよう, 実行後は解凍先ディレクトリ(今回はtndhm_devkit_c-20140627)に戻るようcdしています.)
             (無駄にcdしている, という部分も多少ありますが, サーバの実行などはカレントディレクトリを移動しないとバグります.)
             <hr />
             <h6>サーバのコンパイル</h6>
             <pre><code class="language-bash">cd server
-              ./configure
-              make
-              cd ../</code></pre>
+./configure
+make
+cd ../</code></pre>
             <hr />
             <h6>クライアントのコンパイル</h6>
-            <pre><code class="language-bash">
-              cd client
-              ./configure
-              make
-              cd ../</code></pre>
+            <pre><code class="language-bash">cd client
+./configure
+make
+cd ../</code></pre>
             <hr />
             <h6>サーバの実行</h6>
             <pre><code class="language-bash">cd server/src
-              ./tndhms &
-              cd ../../</code></pre>
+./tndhms &
+cd ../../</code></pre>
             <hr />
             <h6>クライアントの実行(試合には5体実行する必要があります)</h6>
             <pre><code class="language-bash">cd client
@@ -230,6 +220,7 @@
             <p>
               ソース的にはclient内のcファイルを書き換えていくだけで大丈夫です.
             </p>
+            <hr />
             <p>
               それでは, プログラムお待ちしています.
             </p>
