@@ -158,18 +158,10 @@ a:not([href]):not([tabindex]) {
   a:not([href]):not([tabindex]):focus {
     outline: 0; }
 
-pre,
-code,
 kbd,
 samp {
   font-family: monospace, monospace;
   font-size: 1em; }
-
-pre {
-  margin-top: 0;
-  margin-bottom: 1rem;
-  overflow: auto;
-  -ms-overflow-style: scrollbar; }
 
 figure {
   margin: 0 0 1rem; }
@@ -418,18 +410,9 @@ mark,
   font-size: 90%;
   color: #6c757d; }
 
-code,
 kbd,
-pre,
 samp {
   font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
-
-code {
-  font-size: 87.5%;
-  color: #e91e63;
-  word-break: break-word; }
-  a > code {
-    color: inherit; }
 
 kbd {
   padding: 0.2rem 0.4rem;
@@ -444,14 +427,6 @@ kbd {
     font-weight: 700;
     box-shadow: none; }
 
-pre {
-  display: block;
-  font-size: 87.5%;
-  color: #212529; }
-  pre code {
-    font-size: inherit;
-    color: inherit;
-    word-break: normal; }
 
 .pre-scrollable {
   max-height: 340px;
