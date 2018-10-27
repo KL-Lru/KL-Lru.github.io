@@ -147,8 +147,17 @@ a {
   -webkit-text-decoration-skip: objects; }
   a:hover {
     color: #004a43;
-    /*text-decoration: underline;*/
+    text-decoration: underline; }
+
+a.card-body {
+  color: #009688;
+  text-decoration: none;
+  background-color: transparent;
+  -webkit-text-decoration-skip: objects; }
+  a.card-body:hover {
+    color: #007366;
     text-decoration: none; }
+    
 
 a:not([href]):not([tabindex]) {
   color: inherit;
@@ -158,6 +167,8 @@ a:not([href]):not([tabindex]) {
     text-decoration: none; }
   a:not([href]):not([tabindex]):focus {
     outline: 0; }
+
+a.card
 
 kbd,
 samp {
@@ -427,7 +438,6 @@ kbd {
     font-size: 100%;
     font-weight: 700;
     box-shadow: none; }
-
 
 .pre-scrollable {
   max-height: 340px;
