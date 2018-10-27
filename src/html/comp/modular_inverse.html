@@ -76,22 +76,7 @@
     </p>
     <hr />
     <h6>実装例</h6>
-    <pre><code class="language-cpp">
-      #define ll long long
-      ll mod_inverse(ll a, ll p){
-        ll x = 1, n = p - 2;
-        while(n != 0){
-          if(n%2 == 1){ 
-            x = (x * a) % p;
-            n -= 1;
-          }else{
-            x = (x * x) % p;
-            n /= 2;
-          }        
-        }
-        return x;
-      }
-    </code></pre>
+    <pre class="line-numbers" data-src="/src/cpp/Flt.cpp"></pre>
     <p>
       愚直に実装すると$p-2$回の乗算が発生します. 
       $p = 10^9+7$とかの時には計算量酷くて爆発するので, 累乗計算は工夫しましょうというやつです. 
@@ -141,12 +126,7 @@
     </p>
     <p>
       プログラムで書くとわかりやすい.
-      <pre><code class="language-cpp">
-          int gcd(int a, int b){
-            if(b == 0) return a;
-            else return gcd(b, a%b);
-          }
-        </code></pre>
+      <pre class="line-numbers" data-src="/src/cpp/gcd.cpp"></pre>
     </p>
     <p>
       そしてここからが拡張ユークリッドの互除法です. 
@@ -242,27 +222,7 @@
     </p>
     <hr />
     <h6>実装例</h6>
-    <pre><code class="language-cpp">
-      #define ll long long
-      #define MOD ((1e+9)+7)
-      ll ext_gcd(ll a, ll b, ll& x, ll& y){
-        ll gcd = a;
-        if(b != 0){
-          gcd = ext_gcd(b, a % b, y, x);
-          y = (y - (a / b) * x) % MOD; // モジュラ逆数じゃなくて方程式計算の時は%MODは不要
-        } else {
-          x = 1;
-          y = 0;
-        }
-        return gcd;
-      }
-      /* xの計算結果は負になることもあるので, モジュラ逆数として使うときは正にする */
-      ll posi_modular_inverse(ll a, ll b, ll& x, ll& y){
-        ll gcd = ext_gcd(a, b, x, y);
-        x = (x + MOD) % MOD;
-        return gcd;
-      }
-    </code></pre>
+    <pre class="line-numbers" data-src="/src/cpp/extgcd.cpp"></pre>
     <p>
       $x, y$は再帰最深部で初期化されるので, 変数宣言だけしてあれば正常に使えます.
       途中に$x$と$y$が度々入れ替わるのでめんどくさいです.

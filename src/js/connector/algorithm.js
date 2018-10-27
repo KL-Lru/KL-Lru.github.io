@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded",function(){
   if (arg){
     $("#algorithm").load("/src/html/comp/" + arg + ".html", function(){
       self.Prism.highlightAll();
+      self.Prism.fileHighlight();
       MathJax.Hub.Queue(["Typeset", MathJax.Hub, "algorithm"]);
     });
   }else{
