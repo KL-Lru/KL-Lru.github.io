@@ -1,14 +1,15 @@
 document.addEventListener("DOMContentLoaded",function(){
+  var arg = location.search.substring(1);
   $("#navigater").load("/src/html/navi.html",function(){
     $("#version").load("/version");
   });
-  $("#blog").load("/src/html/blog.html",function(){
-    $("#achive1").load("/src/html/blog/achive1.html",function(){
-      self.Prism.fileHighlight();
+  if (arg){
+    $("#blog").load("/src/html/blog/" + arg + ".html", function(){
+      self.Prism.highlightAll();
     });
-    $("#achive2").load("/src/html/blog/achive2.html",function(){
-      self.Prism.fileHighlight();
+  }else{
+    $("#blog").load("/src/html/blog.html",function(){
+      self.Prism.highlightAll();
     });
-    self.Prism.highlightAll();
-  });
+  }
 });
