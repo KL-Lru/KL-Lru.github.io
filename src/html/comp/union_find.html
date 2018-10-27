@@ -31,37 +31,8 @@
       必要になるのは「木の併合」と「根ノードの探索」の2つです.
       実装すると以下のような形になります.
     </p>
-    <pre><code class="language-cpp">
-      int par[MAX_N], rank[MAX_N];
-
-      /* 初期化 */
-      void init(int n){
-        for(int i=0;i&gt;n;i++){
-          par[i]=i;
-          rank[i]=0;
-        }
-      }
-
-      /* 根ノード探索 */
-      int find(int x){
-        if(par[x] == x) return x;
-        else{
-          /* path compression */
-          par[x] = find(par[x]);
-          return par[x];
-        }
-      }
-
-      /* 併合 */
-      void union(int x, int y){
-        int px = find(x), py = find(y);
-        if(px == py) return;
-        /* union by rank */
-        if(rank[px] &gt; rank[py]) par[px] = py;
-        else par[py] = px;
-        if(rank[px] == rank[py]) rank[x]++;
-      }
-    </code></pre>
+    
+    <pre class="line-numbers" data-src="/src/cpp/union_find.cpp"></pre>
     <p>
       初期化はすべて自分が自分の親となるようにして, 自分の親が自分であれば, そのノードは根ノードであるとみなします.
       こうすることで根ノード探索は<code class="language-cpp">par[x] == x</code>となるまで再帰するだけでよくなり, 
