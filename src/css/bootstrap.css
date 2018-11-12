@@ -364,7 +364,7 @@ h1, .h1 {
 
 h1.title{
   padding: 0.5em;
-  border-bottom: double 5px #78C7FF;
+  border-bottom: double 5px #009688;
 }
 
 h2, .h2 {
@@ -373,16 +373,16 @@ h2, .h2 {
 
 h2.part{
   padding: 0.5em;
-  border-left: solid 5px #58AFFF;
+  border-left: solid 5px #009688;
 }
 
 h3, .h3 {
   font-size: 1.75rem;
 }
 
-h3 .theorem{
+h3.theorem{
   padding: 0.5em;
-  border-bottom: solid 3px #5472CD;
+  border-bottom: solid 3px #009688;
 }
 
 h4, .h4 {
