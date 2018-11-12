@@ -363,7 +363,8 @@ h1, .h1 {
 }
 
 h1.title{
-  border-bottom: double 5px #FFC778;
+  padding: 0.5em;
+  border-bottom: double 5px #78C7FF;
 }
 
 h2, .h2 {
@@ -371,7 +372,8 @@ h2, .h2 {
 }
 
 h2.part{
-  border-left: solid 5px #FFAF58;
+  padding: 0.5em;
+  border-left: solid 5px #58AFFF;
 }
 
 h3, .h3 {
