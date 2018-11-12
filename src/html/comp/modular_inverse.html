@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-body">
-    <h4 class="card-title">モジュラ逆数</h4><hr />
-    <h6>考え方</h6>
+    <h1 class="card-title title">モジュラ逆数</h1><hr />
+    <h2 class="part">考え方</h2>
     <p>
       競技プログラミングでよく見る「 $10^9 + 7$ で割った余りを出力せよ」っていう問題で使うものです. 
       往々にして, 計算結果が爆発する組み合わせの問題なんかに出てきます. 
@@ -42,11 +42,11 @@
       この $X$ を法とする剰余類環に存在する $a$ の逆数, 「モジュラ逆数」が求められれば, 全ての計算が $X$ を法とする剰余類環の中で, 行えることになります.
       このモジュラ逆数の求め方をどうにかしよう〜というのがこのページです.
     </p><hr />
-    <h6>フェルマーの小定理</h6>
+    <h2 class="part">フェルマーの小定理</h6>
     まずはフェルマーの小定理がどんなものなのかちゃちゃっと見ましょう.
     <div class="card m-1">
       <div class="card-body">
-        <h5 class="card-title">フェルマーの小定理</h5><hr />
+        <h3 class="card-title theorem">フェルマーの小定理</h3>
         $p$ を素数とし, $a$ を $p$ の倍数でない整数とするとき
         $$a^{p-1} \equiv 1 ~({\rm mod} ~p)$$
       </div>
@@ -59,7 +59,7 @@
       <div id="proof0" class="collapse">
         <div class="card m-1">
           <div class="card-body">
-            <h5 class="card-title">フェルマーの小定理証明</h5><hr />
+            <h3 class="card-title theorem">フェルマーの小定理証明</h3>
             $a$と$p$は互いに素であるため, $a, 2a, ..., (p-1)a$は全て$p$の倍数ではなく, それぞれ$p$による剰余は相異なり, 1〜$p$-1の値を網羅する.
             よって
             $$a \times 2a \times ... \times (p-1)a \equiv (p-1)! ~({\rm mod} ~p)$$
@@ -75,7 +75,7 @@
       とても簡単!
     </p>
     <hr />
-    <h6>実装例</h6>
+    <h2 class="part">実装例</h2>
     <pre class="line-numbers" data-src="/src/cpp/Felmat_lt.cpp"></pre>
     <p>
       愚直に実装すると$p-2$回の乗算が発生します. 
@@ -89,7 +89,7 @@
       のように計算がわけられることを使っています.
     </p>
     <hr />
-    <h6>拡張ユークリッド互除法</h6>
+    <h2 class="part">拡張ユークリッド互除法</h2>
     <p>
       みなさん大好きのユークリッドの互除法, それを拡張して$ax + by = c$形式で$a, b, c$がわかっている時に($c$に制約がありますけど)$x, y$を求めちゃおうというアルゴリズムです.
       これを応用することで高速にモジュラ逆数を計算することが出来ます.
@@ -97,7 +97,7 @@
     </p>
     <div class="card m-1">
       <div class="card-body">
-        <h5 class="card-title">ユークリッドの互除法</h5><hr />
+        <h3 class="card-title theorem">ユークリッドの互除法</h3><hr />
         2つの自然数$a,b(a \geq b)$について, $a$を$b$で割った剰余を$r$とし, $a,b$の最大公約数を${\rm gcd}(a,b)$とする.
         このとき, ${\rm gcd}(a,b) = {\rm gcd}(b,r)$であり, ${\rm gcd}(a,0) = a$である.
         ${\rm gcd}(a,b)$はその2つの自然数の大きい方を小さい方で割り, その除数と剰余について同様の操作を繰り返していくことで求められる.
@@ -111,7 +111,7 @@
       <div id="proof1" class="collapse">
         <div class="card m-1">
           <div class="card-body">
-            <h5 class="card-title">ユークリッドの互除法の証明</h5><hr />
+            <h3 class="card-title theorem">ユークリッドの互除法の証明</h3><hr />
             上に加えて$a$を$b$で割った商を$q$とすると, 
             $$a = qb + r $$
             となる.
@@ -133,7 +133,7 @@
     </p>
     <div class="card m-1">
       <div class="card-body">
-        <h4 class="card-title">拡張ユークリッドの互除法</h4><hr />
+        <h3 class="card-title theorem">拡張ユークリッドの互除法</h3><hr />
         2つの自然数$a,b(a \geq b)$について, $a,b$の最大公約数を${\rm gcd}(a,b)$とする.
         このとき, 任意の整数$c$について$ax + by = c ~{\rm gcd}(a,b)$を満たす整数解$x,y$が存在し, 
         ユークリッドの互除法を応用することによって求めることが出来る.
@@ -148,14 +148,14 @@
       <div id="proof2" class="collapse">
         <div class="card m-1">
           <div class="card-body">
-            <h5 class="card-title">拡張ユークリッドの互除法に必要な証明</h5><hr />
-            <h6>$ax + by = c$が整数解を持つ $\Rightarrow$ $c$が${\rm gcd}(a,b)$の倍数になる.</h6>
+            <h3 class="card-title theorem">拡張ユークリッドの互除法に必要な証明</h3><hr />
+            <h4>$ax + by = c$が整数解を持つ $\Rightarrow$ $c$が${\rm gcd}(a,b)$の倍数になる.</h4>
             <p>
               $a,b$は${\rm gcd}(a,b)$の倍数である.
               よって, 整数$x,y$について$ax + by$は${\rm gcd}(a,b)$の倍数であり, すなわち$c$は${\rm gcd}(a,b)$の倍数である.
             </p>
             <hr />
-            <h6>$ax + by = c$が整数解を持つ $\Leftarrow$ $c$が${\rm gcd}(a,b)$の倍数になる.</h6>
+            <h4>$ax + by = c$が整数解を持つ $\Leftarrow$ $c$が${\rm gcd}(a,b)$の倍数になる.</h4>
             <p>
               $s, t$を, $a,b$をそれぞれ${\rm gcd}(a,b)$で割った数とする.
               この時,  $s,t$は互いに素となる.
@@ -163,14 +163,14 @@
             </p>
             <div class="card m-1">
               <div class="card-body">
-                <h5 class="card-title">補題証明</h5><hr />
-                <h6>$ax + by = 1$が整数解を持つ $\Rightarrow$ $a$と$b$が互いに素である</h6>
+                <h4 class="card-title">補題証明</h4><hr />
+                <h5>$ax + by = 1$が整数解を持つ $\Rightarrow$ $a$と$b$が互いに素である</h5>
                 <p>
                   $a$と$b$が2以上の公約数を持つと仮定すると, $ax+by$は整数解を持つことが出来ないため矛盾が生じる.
                   よって$a$と$b$は互いに素である
                 </p>
                 <hr />
-                <h6>$ax + by = 1$が整数解を持つ $\Leftarrow$ $a$と$b$が互いに素である</h6>
+                <h5>$ax + by = 1$が整数解を持つ $\Leftarrow$ $a$と$b$が互いに素である</h5>
                 <p>
                   $a$と$b$は互いに素であるため, $a, 2a, ..., (b-1)a$は全て$b$の倍数ではなく, $b$による剰余は相異なり, 1〜$b$-1の値を網羅する.
                   すなわち, $an \equiv 1 ({\rm mod} ~b)$となるある整数$n$が存在して, 
@@ -221,7 +221,7 @@
       問題は起きません.
     </p>
     <hr />
-    <h6>実装例</h6>
+    <h2 class="part">実装例</h2>
     <pre class="line-numbers" data-src="/src/cpp/extgcd.cpp"></pre>
     <p>
       $x, y$は再帰最深部で初期化されるので, 変数宣言だけしてあれば正常に使えます.
@@ -230,7 +230,7 @@
       計算量はO(log(n))です.
     </p>
     <hr />
-    <h6>まとめ</h6>
+    <h2 class="part">まとめ</h2>
     <p>
       モジュラ逆数は割り算を掛け算に出来る便利な奴!!
     </p>

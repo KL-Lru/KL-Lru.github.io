@@ -362,12 +362,34 @@ h1, .h1 {
   font-size: 2.5rem;
 }
 
+h1.title{
+  border-bottom: double 5px #FFC778;
+}
+
 h2, .h2 {
   font-size: 2rem;
 }
 
+h2.part{
+  border-left: solid 5px #FFAF58;
+}
+
 h3, .h3 {
   font-size: 1.75rem;
+}
+
+h3 .theorem{
+  border-bottom: solid 3px #cce4ff;
+  position: relative;
+}
+
+h3 .theorem:after {
+  position: absolute;
+  content: " ";
+  display: block;
+  border-bottom: solid 3px #5472cd;
+  bottom: -3px;
+  width: 20%;
 }
 
 h4, .h4 {

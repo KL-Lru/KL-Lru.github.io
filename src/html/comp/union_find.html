@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-body">
-    <h4 class="card-title">Union Find</h4><hr />
-    <h6>考え方</h6>
+    <h1 class="card-title title">Union Find</h1><hr />
+    <h2 class="part">考え方</h2>
     <p>
       Union Findはある要素とある要素が同じグループに属するかどうかを判定するような問題で使用できる木構造です.
     </p>
@@ -26,7 +26,7 @@
       Union Findは, この木構造を併合したり, 組み替えたりして, 効率的にグループ判定の出来るデータ構造となります.
     </p>
     <hr />
-    <h6>実装</h6>
+    <h2 class="part">実装</h2>
     <p>
       必要になるのは「木の併合」と「根ノードの探索」の2つです.
       実装すると以下のような形になります.
@@ -43,7 +43,7 @@
       1つはunion by rank, もう1つはpath compressionです.
     </p>
     <hr />
-    <h6>union by rank</h6>
+    <h3 class="theorem">union by rank</h3>
     <p>
       union by rankは木を併合する際に「木の大きい方に木の小さい方を併合する」というものです.
       なお木の大きさは高さで表し, その木の高さをランクと呼びます.
@@ -62,7 +62,7 @@
       ここでランクが同じ木を併合する場合にだけは, どうしてもランクが1上昇するため, 忘れぬよう注意です.
     </p>
     <hr />
-    <h6>path compression</h6>
+    <h3 class="theorem">path compression</h3>
     <p>
       path compressionは, 木を根ノードまで探索する際, 通ったすべてのノードの親を根ノードにする, というものです.
       単純明快で一度通ったノードに関しては根ノードにダイレクト接続することになるので, 根ノードまでの探索が爆速になります.
@@ -72,7 +72,7 @@
     </p>
     <img src="/img/pathcompression.png" class="m-2">
     <hr />
-    <h5>まとめ</h5>
+    <h2 class="part">まとめ</h2>
     <p>
       Union Findはグループを効率的に管理出来る木構造!!
     </p>
