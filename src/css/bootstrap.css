@@ -381,17 +381,8 @@ h3, .h3 {
 }
 
 h3 .theorem{
-  border-bottom: solid 3px #cce4ff;
-  position: relative;
-}
-
-h3 .theorem:after {
-  position: absolute;
-  content: " ";
-  display: block;
-  border-bottom: solid 3px #5472cd;
-  bottom: -3px;
-  width: 20%;
+  padding: 0.5em;
+  border-bottom: solid 3px #5472CD;
 }
 
 h4, .h4 {

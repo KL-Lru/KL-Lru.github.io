@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-body">
-    <h1 class="card-title title">モジュラ逆数</h1><hr />
+    <h1 class="card-title title">モジュラ逆数</h1>
     <h2 class="part">考え方</h2>
     <p>
       競技プログラミングでよく見る「 $10^9 + 7$ で割った余りを出力せよ」っていう問題で使うものです. 
@@ -41,7 +41,7 @@
     <p>
       この $X$ を法とする剰余類環に存在する $a$ の逆数, 「モジュラ逆数」が求められれば, 全ての計算が $X$ を法とする剰余類環の中で, 行えることになります.
       このモジュラ逆数の求め方をどうにかしよう〜というのがこのページです.
-    </p><hr />
+    </p>
     <h2 class="part">フェルマーの小定理</h6>
     まずはフェルマーの小定理がどんなものなのかちゃちゃっと見ましょう.
     <div class="card m-1">
@@ -74,7 +74,6 @@
       これでモジュラ逆数が求まります. 
       とても簡単!
     </p>
-    <hr />
     <h2 class="part">実装例</h2>
     <pre class="line-numbers" data-src="/src/cpp/Felmat_lt.cpp"></pre>
     <p>
@@ -88,7 +87,6 @@
       $$a^{p - 2} = a^{15} = ((a^2 \times a)^2 \times a)^2 \times a $$
       のように計算がわけられることを使っています.
     </p>
-    <hr />
     <h2 class="part">拡張ユークリッド互除法</h2>
     <p>
       みなさん大好きのユークリッドの互除法, それを拡張して$ax + by = c$形式で$a, b, c$がわかっている時に($c$に制約がありますけど)$x, y$を求めちゃおうというアルゴリズムです.
@@ -97,7 +95,7 @@
     </p>
     <div class="card m-1">
       <div class="card-body">
-        <h3 class="card-title theorem">ユークリッドの互除法</h3><hr />
+        <h3 class="card-title theorem">ユークリッドの互除法</h3>
         2つの自然数$a,b(a \geq b)$について, $a$を$b$で割った剰余を$r$とし, $a,b$の最大公約数を${\rm gcd}(a,b)$とする.
         このとき, ${\rm gcd}(a,b) = {\rm gcd}(b,r)$であり, ${\rm gcd}(a,0) = a$である.
         ${\rm gcd}(a,b)$はその2つの自然数の大きい方を小さい方で割り, その除数と剰余について同様の操作を繰り返していくことで求められる.
@@ -111,7 +109,7 @@
       <div id="proof1" class="collapse">
         <div class="card m-1">
           <div class="card-body">
-            <h3 class="card-title theorem">ユークリッドの互除法の証明</h3><hr />
+            <h3 class="card-title theorem">ユークリッドの互除法の証明</h3>
             上に加えて$a$を$b$で割った商を$q$とすると, 
             $$a = qb + r $$
             となる.
@@ -133,7 +131,7 @@
     </p>
     <div class="card m-1">
       <div class="card-body">
-        <h3 class="card-title theorem">拡張ユークリッドの互除法</h3><hr />
+        <h3 class="card-title theorem">拡張ユークリッドの互除法</h3>
         2つの自然数$a,b(a \geq b)$について, $a,b$の最大公約数を${\rm gcd}(a,b)$とする.
         このとき, 任意の整数$c$について$ax + by = c ~{\rm gcd}(a,b)$を満たす整数解$x,y$が存在し, 
         ユークリッドの互除法を応用することによって求めることが出来る.
@@ -148,7 +146,7 @@
       <div id="proof2" class="collapse">
         <div class="card m-1">
           <div class="card-body">
-            <h3 class="card-title theorem">拡張ユークリッドの互除法に必要な証明</h3><hr />
+            <h3 class="card-title theorem">拡張ユークリッドの互除法に必要な証明</h3>
             <h4>$ax + by = c$が整数解を持つ $\Rightarrow$ $c$が${\rm gcd}(a,b)$の倍数になる.</h4>
             <p>
               $a,b$は${\rm gcd}(a,b)$の倍数である.
@@ -220,7 +218,6 @@
       このとき, $a$と$b$は互いに素でなくてはならないのを忘れてはならないですが, 競プロでよく目にする$10^9+7$は素数なので$10^9+7$を法とした剰余類環の中で計算する分には
       問題は起きません.
     </p>
-    <hr />
     <h2 class="part">実装例</h2>
     <pre class="line-numbers" data-src="/src/cpp/extgcd.cpp"></pre>
     <p>
@@ -229,7 +226,6 @@
       多分忘れて1から書いたらバグを有むエリアだと思います.
       計算量はO(log(n))です.
     </p>
-    <hr />
     <h2 class="part">まとめ</h2>
     <p>
       モジュラ逆数は割り算を掛け算に出来る便利な奴!!
