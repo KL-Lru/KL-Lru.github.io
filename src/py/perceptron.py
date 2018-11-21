@@ -5,7 +5,7 @@ import matplotlib.cm as cm
 
 N = 1000
 
-def sgn(x):
+def sgn(x: bool) -> int:
     return 1 if x else -1
 # 正解はy - x - 3(y = x + 3)
 # バイアスw[0]とxに対する重みw[1], yに対する重みw[2]
@@ -21,6 +21,26 @@ def truecurve(x):
 def estcurve(x, w):
     return (w[0] + x * w[1])/(-w[2])
 
+def perceptron:
+    def __init__(self, w, b):
+        self.param = [w,b]
+        self.grads = [np.zeros_like(w), np.zeros_like(b)]
+        self.x     = None
+    
+    def forward(self, x):
+        w,b = self.param
+        out = np.dot(x, w) + b
+        self.x = x
+        return out
+    
+    def backward(self, dout):
+        w,b = self.param
+        dx = np.dot(dout, w.T)
+        dw = np.dot(self.x.T, dout)
+        db = np.sum(dout, axis=0)
+        self.grads[0][...] = dw
+        self.grads[1][...] = db
+        
 x = np.random.normal(0,10,N)
 y = np.random.normal(0,10,N)
 w = np.random.normal(0,1,3)
