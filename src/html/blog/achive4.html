@@ -1,0 +1,167 @@
+<div class="card">
+  <div class="card-body">
+    <h1 class="card-title title">UECdaのLinux(Ubuntu)上での開発</h1>
+    <p>
+      はい, 無事<a href="http://www.tnlab.inf.uec.ac.jp/daihinmin/2018/">UECda-2018</a>は終わりました.
+      来年から新たな試みが始めるかもしれませんね, 楽しみではあります. 
+    </p>
+    <p>
+      さて, 今回なのですが, UECdaをLinux上でやるに当たって色々解説するという感じの記事です.  
+      前回ちょろっと環境構築とか書いたのですけど, なんか情報が色々共有されていないようなので, 1から書いていきます. 
+    </p>
+
+    <p color="text-danger">
+      この記事は非公式です. 
+      また, 通信部分の高速化に関しては, 他の環境で実行不可能になる可能性のある内容を含みます. 
+    </p>
+
+    <h2 class="part">インストール</h2>
+    <p>
+      以下のコマンドを実行していくだけで終わりです. 
+      <pre><code class="language-bash">sudo apt install build-essential xorg-dev libxaw7-dev gsfonts-x11</code></pre>
+      必要なパッケージをインストールします.
+      ざっくりと説明を書くと
+      <table class="table m-2">
+        <tbody>
+          <tr>
+            <th scope="row">build-essential</th>
+            <td>gcc等コンパイラ一式がインストールされます.</td>
+          </tr>
+          <tr>
+            <th scope="row">xorg-dev</th>
+            <td>X Window System関連がインストールされます.</td>
+          </tr>
+          <tr>
+            <th scope="row">libxaw7-dev</th>
+            <td>X11関連がインストールされます.</td>
+          </tr>
+          <tr>
+            <th scope="row">gsfonts-x11</th>
+            <td>公開サーバが使用しているフォントを含むフォントセットがインストールされます.</td>
+          </tr>
+        </tbody>
+      </table>
+      <pre><code class="language-bash">sudo fc-cache -fv</code></pre>
+      フォントをインストールする関係で, 一度フォントのキャッシュをクリアします.
+      <pre><code class="language-bash">sudo reboot</code></pre>
+      ここまで終わったら再起動します.
+    </p>
+    <p>
+      以上で開発に必要なものは最低限揃います.
+    </p>
+    <h2 class="part">コンパイル・実行</h2>
+    <p>
+      コンパイルは, 配布プログラムのclient, serverディレクトリそれぞれで
+      <pre><code class="language-bash">./configure
+make</code></pre>
+      を実行することで, 終了します.
+    </p>
+    <p>
+      実行設定は配布プログラムのうち, server/srcディレクトリ内のtndhms.cfgを変更することで, 試合回数やウィンドウの設定などが出来ます. 
+      変更時には再コンパイルは不要です.
+    </p>　
+    <p>
+      実行はサーバは, server/srcディレクトリ下で
+      <pre><code class="language-bash">./tndhms</code></pre>
+      を実行, クライアントは, clientディレクトリ下で
+      <pre><code class="language-bash">./client</code></pre>
+      を5つ実行することで試合が開始されます. (bgで実行すると楽です.)
+    </p>
+    <hr />
+    <p>
+      これで実行環境が整い, コンパイルも実行も出来るようになりました. 
+      しかしLinuxではある問題があります.
+    </p>
+    <h2 class="part">実行速度</h2>
+    <p>
+      Cygwinをインストールして実行している方は配布プログラムのdefault 5体で回すと, どれだけ時間がかかるでしょうか?
+      Ubuntu上で「default 5体 1万試合」した結果かかる時間をtimeコマンドで計測すると, この通りです. 
+      <pre><code class="language-bash">real    195m4.065s
+user    0m43.223s
+sys    0m0.000s</code></pre>
+    </p>
+    <p>
+      …
+    </p>
+    <p>
+      はい, 「<div class="font-weight-bold">3時間超</div>」です. 
+      大会見に来ている方はご存知だと思いますが, 大会当日は「defaultより重たいであろうクライアント5体 5000試合」で3分くらいかかるかどうかというレベルです. 
+      どう考えても遅すぎる. 
+    </p>
+    <p>
+      原因は簡単に言うと「<div class="font-weight-bold">Socket通信</div>」です. 
+      UECdaはTCP/IP通信にてクライアントとサーバをつないでいるのですが, これがLinuxだと重たい. 
+      ちなみにSolarisだとめっちゃ速いらしい. 
+    </p>
+    <p>
+      ということでLinux上で開発するならここを高速化しておかないと, 学習させたり, ログを集めたりするのに時間がかかる. (Cygwinを使えとかSolarisを使えとかは今はスルーしておく)
+      高速化はPF_INETで設定されているものをPF_UNIXに変えるだけで終了します. 
+      以下に変更例です. 
+    </p>
+    <hr />
+    <h3>server/src/daihu.cを変更</h3>
+    <p>
+      上部に以下の1文を追加
+      <pre><code class="language-cpp">#include<sys/un.h></code></pre>
+      94行目, 95行目, sockaddr_in から sockaddr_un へ変更
+      <pre><code class="language-cpp">struct sockaddr_un wait_addr; // waiting port
+struct sockaddr_un client_addr[5]; // port for each clients</code></pre>
+      560行目から始まるsocket通信を以下のように変更
+      <pre><code class="language-cpp">if ((sockfd = socket(PF_UNIX, SOCK_STREAM, 0)) < 0) {
+  perror("client: socket");
+  exit(1);
+}
+bzero((char *) &wait_addr, sizeof(wait_addr));
+wait_addr.sun_family = PF_UNIX;
+strcpy(wait_addr.sun_path,SOCKET_PATH);</code></pre>
+    </p>
+    <h3>client/connection.cを変更</h3>
+    <p>
+      上部に以下の1文を追加
+      <pre><code class="language-cpp">#include<sys/un.h></code></pre>
+      33行目, sockaddr_in から sockaddr_un へ変更
+      <pre><code class="language-cpp">static struct sockaddr_un g_client_addr;</code></pre>
+      286行目から始まるopenSocket関数を以下のように変更
+      <pre><code class="language-cpp">static int openSocket(const char addr[], uint16_t port_num){
+if ((g_sockfd = socket(PF_UNIX, SOCK_STREAM, 0)) < 0){
+  return(-1);
+}
+bzero((char*)&g_client_addr,sizeof(g_client_addr));
+g_client_addr.sun_family = PF_UNIX;
+strcpy(g_client_addr.sun_path,SOCKET_PATH);
+
+if (connect(g_sockfd,(struct sockaddr *)&g_client_addr, sizeof(g_client_addr)) == 0){
+  return 0;
+}
+return -1;
+}</code></pre>
+    </p>
+    <hr />
+    <p>
+      これで変更完了です. 
+      SOCKET_PATHには「ローカルに置くソケットファイルのパス」を文字列で入力します. 
+      サーバとクライアント側で同じファイルへのパスを指定すれば大丈夫です. 
+      ファイルは実行時に生成されますが, ファイルがある状態で実行すると, 実行失敗しますので毎回消すなりしてください. 
+    </p>
+    <p>
+      変更した後に「default 5体 1万試合」した結果かかる時間をtimeコマンドで計測すると,,,
+      <pre><code class="language-bash">real    0m33.620s
+user    0m1.688s
+sys    0m8.504s</code></pre>
+    </p>
+    <p>
+      はい, 実行速度が<div class="font-weight-bold">390倍くらい</div>になりました. 
+      爆速になりましたね. 
+    </p>
+    <p>
+      注意点として上でも書きましたが, サーバや他のクライアントプログラムがPF_INETを使っている場合などには通信が出来ずに実行できなくなるので, 注意してください. 
+      サーバ等も書き換えれば通信は出来ますが, 大会に提出する場合には元々のプログラムの通信方法にしたがってPF_INETに直さないとダメだと思われます. 
+    </p>
+    <p>
+      ということで今回はUbuntu上でUECdaをやる上での環境構築や高速化について書きました.
+      ではまた~
+    </p>
+    <hr />
+    <small>2018/11/26 01:26</small>
+  </div>
+</div>
