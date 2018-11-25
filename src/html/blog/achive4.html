@@ -123,17 +123,17 @@ strcpy(wait_addr.sun_path,SOCKET_PATH);</code></pre>
       <pre><code class="language-cpp">static struct sockaddr_un g_client_addr;</code></pre>
       286行目から始まるopenSocket関数を以下のように変更
       <pre><code class="language-cpp">static int openSocket(const char addr[], uint16_t port_num){
-if ((g_sockfd = socket(PF_UNIX, SOCK_STREAM, 0)) < 0){
-  return(-1);
-}
-bzero((char*)&g_client_addr,sizeof(g_client_addr));
-g_client_addr.sun_family = PF_UNIX;
-strcpy(g_client_addr.sun_path,SOCKET_PATH);
+  if ((g_sockfd = socket(PF_UNIX, SOCK_STREAM, 0)) < 0){
+    return(-1);
+  }
+  bzero((char*)&g_client_addr,sizeof(g_client_addr));
+  g_client_addr.sun_family = PF_UNIX;
+  strcpy(g_client_addr.sun_path,SOCKET_PATH);
 
-if (connect(g_sockfd,(struct sockaddr *)&g_client_addr, sizeof(g_client_addr)) == 0){
-  return 0;
-}
-return -1;
+  if (connect(g_sockfd,(struct sockaddr *)&g_client_addr, sizeof(g_client_addr)) == 0){
+    return 0;
+  }
+  return -1;
 }</code></pre>
     </p>
     <hr />
