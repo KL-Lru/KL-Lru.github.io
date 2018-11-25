@@ -102,7 +102,7 @@ sys    0m0.000s</code></pre>
     <h3>server/src/daihu.cを変更</h3>
     <p>
       上部に以下の1文を追加
-      <pre><code class="language-cpp">#include&gt;sys/un.h></code></pre>
+      <pre><code class="language-cpp">#include&lt;sys/un.h></code></pre>
       94行目, 95行目, sockaddr_in から sockaddr_un へ変更
       <pre><code class="language-cpp">struct sockaddr_un wait_addr; // waiting port
 struct sockaddr_un client_addr[5]; // port for each clients</code></pre>
@@ -118,7 +118,7 @@ strcpy(wait_addr.sun_path,SOCKET_PATH);</code></pre>
     <h3>client/connection.cを変更</h3>
     <p>
       上部に以下の1文を追加
-      <pre><code class="language-cpp">#include&gt;sys/un.h></code></pre>
+      <pre><code class="language-cpp">#include&lt;sys/un.h></code></pre>
       33行目, sockaddr_in から sockaddr_un へ変更
       <pre><code class="language-cpp">static struct sockaddr_un g_client_addr;</code></pre>
       286行目から始まるopenSocket関数を以下のように変更
