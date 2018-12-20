@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+<head>
+  <!-- meta -->
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta http-equiv="Pragma" content="no-cache"/>
+  <meta http-equiv="Cache-Control" content="no-cache"/> 
+  <!-- link -->
+  <link rel="stylesheet" href="/src/css/prism.css"/>
+  <link rel="stylesheet" href="/src/css/bootstrap.css"/>
+  <link rel="stylesheet" href="/src/css/material-design.css">
+  <!-- script -->
+  <script src="/src/js/jquery.js" defer></script>
+  <script src="/src/js/prism.js" defer></script>
+  <script src="/src/js/popper.js" defer></script>
+  <script src="/src/js/bootstrap.js" defer></script>
+  <script src="/src/js/material-design.js" defer></script>
+  <script defer>
+  document.addEventListener("DOMContentLoaded",function(){
+    $("#nlp").load("/src/html/nlp/chapter1.html",function(){
+      self.Prism.fileHighlight();
+    });
+  });
+  </script>
+  <script src="/src/js/apply-material.js"defer></script>
+  <title>Lru Room</title>
+</head>
+
+<body>
+  <div class="p-3">
+    <div class="container-fluid">
+      <!-- Contents -->
+      <div class="mt-2">
+        <!-- nlp -->
+        <div id="nlp">
+        </div>
+        <!-- End nlp -->
+      </div>
+      <!-- End Contents -->
+    </div>
+  </div>
+</body>
+</html>
