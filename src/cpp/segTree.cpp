@@ -29,6 +29,8 @@ void update(int ind, int val){
 }
 
 /* 閉区間[a,b]における最小値を探す */
+/* [l,r]がインデックスindがカバーする範囲となるよう入力する */
+/* 外部から呼び出すならquery(a, b, 0, 0, N-1) */
 int query(int a, int b, int ind, int l, int r){
   if(r < a || b < l) return INF;
   if(a <= l && r <= b) return seg_tree[ind];
