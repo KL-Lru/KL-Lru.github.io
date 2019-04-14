@@ -88,7 +88,7 @@ sys    0m0.000s</code></pre>
     </p>
     <p>
       はい, 「<b>3時間超</b>」です. 
-      大会見に来ている方はご存知だと思いますが, 大会当日は「defaultより重たいであろうクライアント5体 5000試合」で3分くらいかかるかどうかというレベルです. 
+      大会見に来ている方はご存知だと思いますが, 大会当日は「defaultより重たいであろうクライアント5体 5000試合」などでも3分くらいかかるかどうかというレベルです. 
       どう考えても遅すぎる. 
     </p>
     <p>
@@ -106,26 +106,93 @@ sys    0m0.000s</code></pre>
     <p>
       上部に以下の1文を追加
       <pre><code class="language-cpp">#include&lt;sys/un.h></code></pre>
-      94行目, 95行目, sockaddr_in から sockaddr_un へ変更
-      <pre><code class="language-cpp">struct sockaddr_un wait_addr; // waiting port
+      95行目辺り, sockaddr_in から sockaddr_un へ変更
+      <div class="row">
+        <div class="col-sm-6">
+          変更前
+          <pre><code class="language-cpp">struct sockaddr_in wait_addr; // waiting port
+struct sockaddr_in client_addr[5]; // port for each clients</code></pre>
+        </div>
+        <div class="col-sm-6">
+          変更後
+          <pre><code class="language-cpp">struct sockaddr_un wait_addr; // waiting port
 struct sockaddr_un client_addr[5]; // port for each clients</code></pre>
-      560行目から始まるsocket通信を以下のように変更
-      <pre><code class="language-cpp">if ((sockfd = socket(PF_UNIX, SOCK_STREAM, 0)) < 0) {
+        </div>
+      </div>
+      560行目辺りから始まるsocket通信部を以下のように変更
+      <div class="row">
+        <div class="col-sm-6">
+          変更前
+          <pre><code class="language-cpp">if ((sockfd = socket(PF_INET, SOCK_STREAM, 0)) < 0) {
+  perror("client: socket");
+  exit(1);
+}
+bzero((char *) &wait_addr, sizeof(wait_addr));
+wait_addr.sin_family = PF_INET;
+wait_addr.sin_addr.s_addr = htons(INADDR_ANY);
+wait_addr.sin_port = htons(port_number);</code></pre>      
+        </div>
+        <div class="col-sm-6">
+          変更後
+          <pre><code class="language-cpp">if ((sockfd = socket(PF_UNIX, SOCK_STREAM, 0)) < 0) {
   perror("client: socket");
   exit(1);
 }
 bzero((char *) &wait_addr, sizeof(wait_addr));
 wait_addr.sun_family = PF_UNIX;
 strcpy(wait_addr.sun_path,SOCKET_PATH);</code></pre>
+        </div>
+      </div>
     </p>
     <h3>client/connection.cを変更</h3>
     <p>
       上部に以下の1文を追加
       <pre><code class="language-cpp">#include&lt;sys/un.h></code></pre>
       33行目, sockaddr_in から sockaddr_un へ変更
-      <pre><code class="language-cpp">static struct sockaddr_un g_client_addr;</code></pre>
+      <div class="row">
+        <div class="col-sm-6">
+          変更前
+          <pre><code class="language-cpp">static struct sockaddr_in g_client_addr;</code></pre>
+        </div>
+        <div class="col-sm-6">
+          変更後
+          <pre><code class="language-cpp">static struct sockaddr_un g_client_addr;</code></pre>
+        </div>
+      </div> 
       286行目から始まるopenSocket関数を以下のように変更
-      <pre><code class="language-cpp">static int openSocket(const char addr[], uint16_t port_num){
+      <div class="row">
+        <div class="col-sm-6">
+          変更前
+          <pre><code class="language-cpp">static int openSocket(const char addr[], uint16_t port_num){
+  if ((g_sockfd = socket(PF_INET, SOCK_STREAM, 0)) < 0){
+    return(-1);
+  }
+
+  bzero((char*)&g_client_addr,sizeof(g_client_addr));
+  g_client_addr.sin_family = PF_INET;
+  g_client_addr.sin_port = htons(port_num);
+  g_client_addr.sin_addr.s_addr = inet_addr(addr);
+
+  if (g_client_addr.sin_addr.s_addr == 0xffffffff) {
+    struct hostent *host;
+    host = gethostbyname(addr);
+    if (host == NULL) {
+      printf("failed to gethostbyname() : %s.\n",addr);
+      return -1;
+    }
+    g_client_addr.sin_addr.s_addr=
+      *(unsigned int *)host->h_addr_list[0];
+  }
+
+  if (connect(g_sockfd,(struct sockaddr *)&g_client_addr, sizeof(g_client_addr)) == 0){
+    return 0;
+  }
+  return -1;
+}</code></pre>      
+        </div>
+        <div class="col-sm-6">
+          変更後
+          <pre><code class="language-cpp">static int openSocket(const char addr[], uint16_t port_num){
   if ((g_sockfd = socket(PF_UNIX, SOCK_STREAM, 0)) < 0){
     return(-1);
   }
@@ -138,6 +205,8 @@ strcpy(wait_addr.sun_path,SOCKET_PATH);</code></pre>
   }
   return -1;
 }</code></pre>
+        </div>
+      </div>
     </p>
     <hr />
     <p>
@@ -145,6 +214,16 @@ strcpy(wait_addr.sun_path,SOCKET_PATH);</code></pre>
       SOCKET_PATHには「ローカルに置くソケットファイルのパス」を文字列で入力します. 
       サーバとクライアント側で同じファイルへのパスを指定すれば大丈夫です. 
       ファイルは実行時に生成されますが, ファイルがある状態で実行すると, 実行失敗しますので毎回消すなりしてください. 
+      <mark>
+        <h4>2019/04/14 追記</h4>
+        <p>
+          WSL(Ubuntu)で実行した方から報告があったため追記です. 
+        </p>
+        <p>
+          このソケットファイルのパスに「Windows管理下にある(/mnt/c/以下の)ディレクトリ下」を指定すると, バグの原因になるようです.
+          WSLの管理下のディレクトリ下に生成するようにしてください.
+        </p>
+      </mark>
     </p>
     <p>
       変更した後に「default 5体 1万試合」した結果かかる時間をtimeコマンドで計測すると,,,
