@@ -6,7 +6,7 @@ ll mod_inverse(ll a, ll p){
       x = (x * a) % p;
       n -= 1;
     }else{
-      x = (x * x) % p;
+      a = (a * a) % p;
       n /= 2;
     }        
   }

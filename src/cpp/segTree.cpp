@@ -7,9 +7,7 @@ using namespace std;
 vector<int> seg_tree;
 int N;
 
-/* リストからセグメント木を構築する */
 void init(vector<int> &v){
-  // v.size() 以上最小の2の累乗にNを設定する
   int n = v.size();
   N = pow(2, ceil(log2(n))); 
   seg_tree.resize(2*N-1);
@@ -18,7 +16,6 @@ void init(vector<int> &v){
   for(int i=N-2;i>=0;i--) seg_tree[i] = min(seg_tree[2*i+1], seg_tree[2*i+2]);
 }
 
-/* 値を更新する */
 void update(int ind, int val){
   ind += N - 1;
   seg_tree[ind] = val;
@@ -27,10 +24,6 @@ void update(int ind, int val){
     seg_tree[ind] = min(seg_tree[2*ind+1], seg_tree[2*ind+2]);
   }
 }
-
-/* 閉区間[a,b]における最小値を探す */
-/* [l,r]がインデックスindがカバーする範囲となるよう入力する */
-/* 外部から呼び出すならquery(a, b, 0, 0, N-1) */
 int query(int a, int b, int ind, int l, int r){
   if(r < a || b < l) return INF;
   if(a <= l && r <= b) return seg_tree[ind];
