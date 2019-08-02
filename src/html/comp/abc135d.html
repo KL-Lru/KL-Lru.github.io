@@ -1,0 +1,311 @@
+<div class="card">
+  <div class="card-body">
+    <h1 class="card-title title">Atcoder Beginner Contest 135 D問 Digits Parade</h1>
+    <h3>問題概要</h3>
+    <p>
+      与えられた数値(文字列)中の'?'を数字に置き換え, 13で割って5余る数が何通りあるかを求める問題です.
+    </p>
+    <p>
+      '?'の有りえるパターン全てを試すには最悪で$10^10^5$くらいの計算量になるため, 時間が明らかに足りません.
+    </p>
+    <p>
+      考えるのに必要なのは, 一言で言えば「剰余の扱い」だけです.
+    </p>
+    <h3>解説的なモノ</h3>
+    <p>
+      難しい話はおいておいて, 端的に言うと,
+      $$a+bの剰余 = aの剰余 + bの剰余$$
+      $$a \times bの剰余 = aの剰余 \times bの剰余$$
+      が成り立ちます. (正確には少し違いますが)
+    </p>
+    <p>
+      (詳しく調べる場合は「剰余類環」とかで調べると色々出てくると思います.)
+    </p>
+    <p>
+      さて, ここである $n$ 桁の数値 $x = a_{n-1} a_{n-2} \dots a_0$ は
+      $$ x = a_{n-1} \times 10^{n-1} + a_{n-2} \times 10^{n-2} + \dots + a_0 \times 10^0 $$
+      なので, $x$ を13で割った余りは次のように書けます.
+      $$ x \% 13 = (a_{n-1} \times 10^{n-1} + a_{n-2} \times 10^{n-2} + \dots + a_0 \times 10^0 ) \% 13 $$
+      $$ x \% 13 = ( ( (a_{n-1} \times (10^{n-1} \% 13) \% 13) + (a_{n-2} \times (10^{n-2} \% 13) \% 13) ) \% 13 + \dots
+      + (a_0 \times 10^0 \% 13) ) \% 13 $$
+    </p>
+    <p>
+      数式がややこしいので$x$の$i$桁目までの数を13で割った余りを$x_i$として見てみると,
+      $$ x_i = ((a_i \times 10^i) + x_{i-1}) \% 13$$
+      が成り立ちます.
+    </p>
+    <p>
+      ここで, $i-1$桁目までの剰余がわかれば, $i$桁目の数字によって$i$桁目までの剰余が求められることが分かります.
+    </p>
+    <p>
+      整理すると, $i-1$桁目までの剰余が $\alpha$ である数が○個あるとすると
+      $i$桁目の数字によって剰余が$\beta$ である数が何個あるかを計算することが出来ます.
+    </p>
+    <p>
+      下の桁から剰余が$\alpha$である数がいくつあるかを計算していくDPで求められます.
+    </p>
+    <hr />
+    <h4>補足</h4>
+    <p>
+      AtCoderの解説では上の桁から計算して$ x_i = (x_{i+1} \times 10 + a_i) \% 13$でコードが書かれています.
+    </p>
+    <h3>具体例</h3>
+    <p>
+      入力例の"??2??5"を例に解いてみます.
+    </p>
+    <p>
+      一桁目は5ですので, 13で割った余りは5です.
+      '?'でないのでこれ以外の値は取らないため, 一桁目は剰余5が1通り, 他の剰余は0通りになります.
+      <table class="table m-2">
+        <tbody>
+          <tr>
+            <th>剰余</th>
+            <td>0</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+            <td>10</td>
+            <td>11</td>
+            <td>12</td>
+          </tr>
+          <tr>
+            <th>組み合わせ数</th>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>1</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+        </tbody>
+      </table>
+    </p>
+    <p>
+      二桁目は'?'ですので, 0~9まで自由に値を設定出来ます.
+      '?'が0の場合は$(0 \times 10 + x_0) \% 13$ですので,
+      一桁目の結果から余り5が1通り, 他は0通りになります.
+    </p>
+    <p>
+      同様に'?'が1の場合は$(1 \times 10 + x_0) \% 13$ですので,
+      一桁目の結果から余り2が1通り, 他は0通りになります.
+    </p>
+    <p>
+      これらの結果を合算したものが二桁目の結果になります.
+      <table class="table m-2">
+        <tbody>
+          <tr>
+            <th>剰余</th>
+            <td>0</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+            <td>10</td>
+            <td>11</td>
+            <td>12</td>
+          </tr>
+          <tr>
+            <th>組み合わせ数</th>
+            <td>1</td>
+            <td>0</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>0</td>
+            <td>1</td>
+            <td>1</td>
+            <td>0</td>
+            <td>1</td>
+          </tr>
+        </tbody>
+      </table>
+    </p>
+    <p>
+      同様に3桁目は
+      <table class="table m-2">
+        <tbody>
+          <tr>
+            <th>剰余</th>
+            <td>0</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+            <td>10</td>
+            <td>11</td>
+            <td>12</td>
+          </tr>
+          <tr>
+            <th>組み合わせ数</th>
+            <td>8</td>
+            <td>7</td>
+            <td>8</td>
+            <td>8</td>
+            <td>7</td>
+            <td>8</td>
+            <td>8</td>
+            <td>8</td>
+            <td>7</td>
+            <td>8</td>
+            <td>8</td>
+            <td>7</td>
+            <td>8</td>
+          </tr>
+        </tbody>
+      </table>
+    </p>
+    <p>
+      同様に4桁目は
+      <table class="table m-2">
+        <tbody>
+          <tr>
+            <th>剰余</th>
+            <td>0</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+            <td>10</td>
+            <td>11</td>
+            <td>12</td>
+          </tr>
+          <tr>
+            <th>組み合わせ数</th>
+            <td>8</td>
+            <td>8</td>
+            <td>7</td>
+            <td>8</td>
+            <td>8</td>
+            <td>8</td>
+            <td>7</td>
+            <td>8</td>
+            <td>8</td>
+            <td>7</td>
+            <td>8</td>
+            <td>8</td>
+            <td>7</td>
+          </tr>
+        </tbody>
+      </table>
+    </p>
+    <p>
+      同様に4桁目は
+      <table class="table m-2">
+        <tbody>
+          <tr>
+            <th>剰余</th>
+            <td>0</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+            <td>10</td>
+            <td>11</td>
+            <td>12</td>
+          </tr>
+          <tr>
+            <th>組み合わせ数</th>
+            <td>78</td>
+            <td>76</td>
+            <td>76</td>
+            <td>79</td>
+            <td>76</td>
+            <td>76</td>
+            <td>79</td>
+            <td>76</td>
+            <td>76</td>
+            <td>78</td>
+            <td>77</td>
+            <td>76</td>
+            <td>77</td>
+          </tr>
+        </tbody>
+      </table>
+    </p>
+    <p>
+      同様に4桁目は
+      <table class="table m-2">
+        <tbody>
+          <tr>
+            <th>剰余</th>
+            <td>0</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+            <td>10</td>
+            <td>11</td>
+            <td>12</td>
+          </tr>
+          <tr>
+            <th>組み合わせ数</th>
+            <td>771</td>
+            <td>768</td>
+            <td>768</td>
+            <td>772</td>
+            <td>768</td>
+            <td>768</td>
+            <td>771</td>
+            <td>769</td>
+            <td>768</td>
+            <td>770</td>
+            <td>770</td>
+            <td>768</td>
+            <td>769</td>
+          </tr>
+        </tbody>
+      </table>
+    </p>
+    <p>
+      よって, 答えは768になります.
+    </p>
+    <h3>実装</h3>
+    <p>
+      下の桁から計算しますが, 初期化は一桁目が'?'の場合と数字の場合で違うと面倒ですが, さらにその下の桁があり, 数値的には0であるとしても一般性を失いませんので, その仮定で書いて問題ないです.
+    </p>
+    <pre class="line-numbers" data-src="/src/cpp/abc135d.cpp"></pre>
+    <hr />
+    <small>2019/08/02 16:00</small>
+  </div>
+</div>
